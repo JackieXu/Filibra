@@ -1,0 +1,56 @@
+{% extends ':challenge:base.html.twig' %}
+
+{% block body %}
+    <h1>Challenge</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ challenge.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ challenge.name }}</td>
+            </tr>
+            <tr>
+                <th>Prize</th>
+                <td>{{ challenge.prize }}</td>
+            </tr>
+            <tr>
+                <th>Start Date</th>
+                <td>{% if challenge.startDate %}{{ challenge.startDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Finish Date</th>
+                <td>{% if challenge.finishDate %}{{ challenge.finishDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Sponsor</th>
+                <td>{{ challenge.sponsorName }}</td>
+            </tr>
+            <tr>
+                <th>Sponsor Image Link</th>
+                <td>{{ challenge.sponsorImageURL }}</td>
+            </tr>
+            <tr>
+                <th>Sponsor Website Link</th>
+                <td>{{ challenge.sponsorWebsiteURL }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('sgar_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('sgar_edit', { 'id': challenge.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

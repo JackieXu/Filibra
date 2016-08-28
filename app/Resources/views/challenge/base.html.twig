@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Cool behind-the-scenes meta stuff -->
+    <meta charset="UTF-8" />
+
+    <!-- Names are important -->
+    <title>{% block title %}Affiliate Branding{% endblock %}</title>
+
+    <!-- Beauty is only a stylesheet deep -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/foundation.min.css') }}" />
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+{% block body %}{% endblock %}
+
+<!-- This is where the magic happens -->
+<script src="{{ asset('js/jquery.js') }}"></script>
+<script src="{{ asset('js/foundation.min.js') }}"></script>
+{% block javascripts %}{% endblock %}
+</body>
+</html>

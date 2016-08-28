@@ -1,0 +1,51 @@
+{% extends ':challenge:base.html.twig' %}
+
+{% block body %}
+    <h1>Challenge list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Prize</th>
+                <th>Start Date</th>
+                <th>Finish Date</th>
+                <th>Sponsor</th>
+                <th>Sponsor Image Link</th>
+                <th>Sponsor Website Link</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for challenge in challenges %}
+            <tr>
+                <td><a href="{{ path('sgar_show', { 'id': challenge.id }) }}">{{ challenge.id }}</a></td>
+                <td>{{ challenge.name }}</td>
+                <td>{{ challenge.prize }}</td>
+                <td>{% if challenge.startDate %}{{ challenge.startDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if challenge.finishDate %}{{ challenge.finishDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ challenge.sponsorName }}</td>
+                <td>{{ challenge.sponsorImageURL }}</td>
+                <td>{{ challenge.sponsorWebsiteURL }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('sgar_show', { 'id': challenge.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('sgar_edit', { 'id': challenge.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('sgar_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

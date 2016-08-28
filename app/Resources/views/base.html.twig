@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Cool behind-the-scenes meta stuff -->
+        <meta charset="UTF-8" />
+
+        <!-- Names are important -->
+        <title>{% block title %}Affiliate Branding{% endblock %}</title>
+
+        <!-- Beauty is only a stylesheet deep -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/foundation.min.css') }}" />
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        <div class="top-bar">
+            <div class="row">
+                <div class="top-bar-left">
+                    <ul class="menu">
+                        <li class="menu-text">Filibra</li>
+                    </ul>
+                </div>
+                <div class="top-bar-right">
+                    <ul class="menu">
+                        <li>
+                            {% if app.user %}
+                            <a class="button" href="{{ path('app_authentication_logouthandler') }}">Logout</a>
+                            {% else %}
+                            <a class="button" href="https://api.instagram.com/oauth/authorize/?client_id=d4d4ab1ee7944adb8bfce67b30c283fd&redirect_uri={{ absolute_url(path('app_authentication_loginhandler')) }}&response_type=code">Login with Instagram</a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% for message in app.session.flashBag.get('info') %}
+        <div class="callout success" data-closable>
+            <span>{{ message }}</span>
+            <a class="close-button" href="#">&times;</a>
+        </div>
+        {% endfor %}
+        {% for message in app.session.flashBag.get('error') %}
+            <div class="callout alert" data-closable>
+                <span>{{ message }}</span>
+                <a class="close-button" href="#">&times;</a>
+            </div>
+        {% endfor %}
+        {% block body %}{% endblock %}
+
+        <!-- This is where the magic happens -->
+        <script src="{{ asset('js/jquery.js') }}"></script>
+        <script src="{{ asset('js/foundation.min.js') }}"></script>
+        <script>
+            $(document).foundation();
+        </script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
