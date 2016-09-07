@@ -23,6 +23,7 @@
                 <td><a href="{{ path('sgar_show', { 'id': challenge.id }) }}">{{ challenge.id }}</a></td>
                 <td>{{ challenge.name }}</td>
                 <td>{{ challenge.prize }}</td>
+                <td>{{ challenge.hashTag }}</td>
                 <td>{% if challenge.startDate %}{{ challenge.startDate|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{% if challenge.finishDate %}{{ challenge.finishDate|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{{ challenge.sponsorName }}</td>

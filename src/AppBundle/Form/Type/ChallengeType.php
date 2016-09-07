@@ -23,6 +23,7 @@ class ChallengeType extends AbstractType
         $builder
             ->add('name')
             ->add('prize')
+            ->add('hashTag')
             ->add('startDate', DateTimeType::class)
             ->add('finishDate', DateTimeType::class)
             ->add('sponsorName')

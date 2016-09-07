@@ -18,6 +18,10 @@
                 <td>{{ challenge.prize }}</td>
             </tr>
             <tr>
+                <th>Hash Tag</th>
+                <td>{{ challenge.hashTag }}</td>
+            </tr>
+            <tr>
                 <th>Start Date</th>
                 <td>{% if challenge.startDate %}{{ challenge.startDate|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
