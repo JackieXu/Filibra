@@ -46,6 +46,15 @@ class Challenge
     protected $prize;
 
     /**
+     * Challenge hash tag.
+     *
+     * @ORM\Column(type="string", length=255)
+     *
+     * @var string
+     */
+    protected $hashTag;
+
+    /**
      * Challenge start date and time.
      *
      * @ORM\Column(type="datetime", name="start_date")
@@ -163,6 +172,30 @@ class Challenge
     public function getPrize()
     {
         return $this->prize;
+    }
+
+    /**
+     * Set hashTag
+     *
+     * @param string $hashTag
+     *
+     * @return Challenge
+     */
+    public function setHashTag($hashTag)
+    {
+        $this->hashTag = $hashTag;
+
+        return $this;
+    }
+
+    /**
+     * Get hashTag
+     *
+     * @return string
+     */
+    public function getHashTag()
+    {
+        return $this->hashTag;
     }
 
     /**
