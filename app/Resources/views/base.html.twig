@@ -25,7 +25,7 @@
                             {% if app.user %}
                             <a class="button" href="{{ path('app_authentication_logouthandler') }}">Logout</a>
                             {% else %}
-                            <a class="button" href="https://api.instagram.com/oauth/authorize/?client_id=d4d4ab1ee7944adb8bfce67b30c283fd&redirect_uri={{ absolute_url(path('app_authentication_loginhandler')) }}&response_type=code">Login with Instagram</a>
+                            <a class="button" href="https://api.instagram.com/oauth/authorize/?client_id=d4d4ab1ee7944adb8bfce67b30c283fd&redirect_uri={{ absolute_url(path('app_authentication_instagramloginhandler')) }}&response_type=code">Login with Instagram</a>
                             {% endif %}
                         </li>
                     </ul>

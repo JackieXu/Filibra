@@ -21,12 +21,12 @@ class AuthenticationController extends Controller
     /**
      * Handles Instagram login redirect.
      *
-     * @Route("/login")
+     * @Route("/login/instagram")
      *
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function loginHandler(Request $request): Response
+    public function instagramLoginHandler(Request $request): Response
     {
         if ($request->query->has('error')) {
             return $this->redirectToRoute('app_default_homepage');
@@ -34,7 +34,7 @@ class AuthenticationController extends Controller
 
         $instagramData = $this->get('instagram')->login(
             $request->query->get('code'),
-            $this->generateUrl('app_authentication_loginhandler', [], UrlGeneratorInterface::ABSOLUTE_URL)
+            $this->generateUrl('app_authentication_instagramloginhandler', [], UrlGeneratorInterface::ABSOLUTE_URL)
         );
 
         if ($instagramData) {
