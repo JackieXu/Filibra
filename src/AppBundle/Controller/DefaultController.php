@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
@@ -14,7 +15,7 @@ class DefaultController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function homePageAction()
+    public function homePageAction(): Response
     {
         return $this->render(':default:index.html.twig');
     }
@@ -26,7 +27,7 @@ class DefaultController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function aboutPageAction()
+    public function aboutPageAction(): Response
     {
         return $this->render(':default:index.html.twig');
     }
@@ -38,7 +39,7 @@ class DefaultController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function contactPageAction()
+    public function contactPageAction(): Response
     {
         return $this->render(':default:index.html.twig');
     }

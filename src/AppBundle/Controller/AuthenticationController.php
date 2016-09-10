@@ -6,6 +6,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
@@ -23,9 +24,9 @@ class AuthenticationController extends Controller
      * @Route("/login")
      *
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function loginHandler(Request $request)
+    public function loginHandler(Request $request): Response
     {
         if ($request->query->has('error')) {
             return $this->redirectToRoute('app_default_homepage');
@@ -60,9 +61,9 @@ class AuthenticationController extends Controller
      * @Route("/logout")
      *
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function logoutHandler(Request $request)
+    public function logoutHandler(Request $request): Response
     {
         if ($this->getUser()) {
             $this->get('security.token_storage')->setToken(null);

@@ -2,12 +2,14 @@
 
 namespace AppBundle\Controller;
 
+use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Challenge;
-use AppBundle\Form\ChallengeType;
+use AppBundle\Form\Type\ChallengeType;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Challenge controller.
@@ -22,15 +24,15 @@ class ChallengeController extends Controller
      * @Route("/", name="sgar_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(): Response
     {
         $em = $this->getDoctrine()->getManager();
 
         $challenges = $em->getRepository('AppBundle:Challenge')->findAll();
 
-        return $this->render('challenge/index.html.twig', array(
+        return $this->render('challenge/index.html.twig', [
             'challenges' => $challenges,
-        ));
+        ]);
     }
 
     /**
@@ -40,9 +42,9 @@ class ChallengeController extends Controller
      * @Method({"GET", "POST"})
      *
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request): Response
     {
         $challenge = new Challenge();
         $form = $this->createForm('AppBundle\Form\Type\ChallengeType', $challenge);
@@ -53,13 +55,13 @@ class ChallengeController extends Controller
             $em->persist($challenge);
             $em->flush();
 
-            return $this->redirectToRoute('sgar_show', array('id' => $challenge->getId()));
+            return $this->redirectToRoute('sgar_show', ['id' => $challenge->getId()]);
         }
 
-        return $this->render('challenge/new.html.twig', array(
+        return $this->render('challenge/new.html.twig', [
             'challenge' => $challenge,
             'form' => $form->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -71,14 +73,14 @@ class ChallengeController extends Controller
      * @param Challenge $challenge
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function showAction(Challenge $challenge)
+    public function showAction(Challenge $challenge): Response
     {
         $deleteForm = $this->createDeleteForm($challenge);
 
-        return $this->render('challenge/show.html.twig', array(
+        return $this->render('challenge/show.html.twig', [
             'challenge' => $challenge,
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -89,9 +91,9 @@ class ChallengeController extends Controller
      *
      * @param Request $request
      * @param Challenge $challenge
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function editAction(Request $request, Challenge $challenge)
+    public function editAction(Request $request, Challenge $challenge): Response
     {
         $deleteForm = $this->createDeleteForm($challenge);
         $editForm = $this->createForm('AppBundle\Form\ChallengeType', $challenge);
@@ -102,14 +104,14 @@ class ChallengeController extends Controller
             $em->persist($challenge);
             $em->flush();
 
-            return $this->redirectToRoute('sgar_edit', array('id' => $challenge->getId()));
+            return $this->redirectToRoute('sgar_edit', ['id' => $challenge->getId()]);
         }
 
-        return $this->render('challenge/edit.html.twig', array(
+        return $this->render('challenge/edit.html.twig', [
             'challenge' => $challenge,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -120,9 +122,9 @@ class ChallengeController extends Controller
      *
      * @param Request $request
      * @param Challenge $challenge
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function deleteAction(Request $request, Challenge $challenge)
+    public function deleteAction(Request $request, Challenge $challenge): Response
     {
         $form = $this->createDeleteForm($challenge);
         $form->handleRequest($request);
@@ -143,10 +145,10 @@ class ChallengeController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(Challenge $challenge)
+    private function createDeleteForm(Challenge $challenge): Form
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('sgar_delete', array('id' => $challenge->getId())))
+            ->setAction($this->generateUrl('sgar_delete', ['id' => $challenge->getId()]))
             ->setMethod('DELETE')
             ->getForm()
         ;

@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class UserController
@@ -20,7 +21,7 @@ class UserController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function overviewPageAction()
+    public function overviewPageAction(): Response
     {
         if (!$this->isGranted('ROLE_USER')) {
 
