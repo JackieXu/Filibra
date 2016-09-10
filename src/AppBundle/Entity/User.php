@@ -58,7 +58,7 @@ class User implements UserInterface
     /**
      * User Instagram identifier.
      *
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @var string
      */
@@ -67,7 +67,7 @@ class User implements UserInterface
     /**
      * User Instagram username.
      *
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @var string
      */
@@ -76,7 +76,7 @@ class User implements UserInterface
     /**
      * User Instagram access token.
      *
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @var string
      */
@@ -85,7 +85,7 @@ class User implements UserInterface
     /**
      * User Facebook identifier.
      *
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @var string
      */
@@ -94,7 +94,7 @@ class User implements UserInterface
     /**
      * User Facebook access token.
      *
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @var string
      */
