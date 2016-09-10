@@ -29,8 +29,6 @@ class UserController extends Controller
             return $this->render(':default:index.html.twig')->setStatusCode(403);
         }
 
-        $this->addFlash('info', 'Succesfully logged in');
-
         return $this->render(':default:index.html.twig');
     }
 }

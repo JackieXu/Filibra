@@ -44,6 +44,8 @@ class AuthenticationController extends Controller
             $this->get('security.token_storage')->setToken($token);
             $this->get('event_dispatcher')->dispatch('security.interactive_login', $event);
 
+            $this->addFlash('info', 'Succesfully logged in');
+
             return $this->redirectToRoute('app_user_overviewpage');
         }
 
