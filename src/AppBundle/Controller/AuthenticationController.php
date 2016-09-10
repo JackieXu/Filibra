@@ -24,7 +24,7 @@ class AuthenticationController extends Controller
      * @Route("/login/instagram")
      *
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function instagramLoginHandler(Request $request): Response
     {
@@ -61,7 +61,7 @@ class AuthenticationController extends Controller
      * @Route("/logout")
      *
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function logoutHandler(Request $request): Response
     {
