@@ -40,6 +40,21 @@ class InstagramService
     }
 
     /**
+     * Gets Instagram login URL.
+     *
+     * @param string $redirectURL
+     * @return string
+     */
+    public function getLoginURL(string $redirectURL): string
+    {
+        return sprintf(
+            "https://api.instagram.com/oauth/authorize/?client_id=%s&redirect_uri=%s&response_type=code",
+            $this->clientId,
+            $redirectURL
+        );
+    }
+
+    /**
      * Logs user in via authorization code.
      *
      * TODO: Implement proper error/exception handling.
