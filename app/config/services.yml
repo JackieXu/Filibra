@@ -1,13 +1,18 @@
-# Learn more about services, parameters and containers at
-# http://symfony.com/doc/current/book/service_container.html
+# TODO: move these things to parameters.
 parameters:
     instagram_client_id: d4d4ab1ee7944adb8bfce67b30c283fd
     instagram_client_secret: 1aec6127a97a46f6866d66dda42ded93
+
+    facebook_app_id: 1641474732829625
+    facebook_app_secret: e082f3446f283be92f401e6c9d9877c7
 
 services:
     instagram:
         class: AppBundle\Service\InstagramService
         arguments: ["%instagram_client_id%", "%instagram_client_secret%"]
+    facebook.service:
+        class: AppBundle\Service\FacebookService
+        arguments: ["%%facebook_app_id%", "%%facebook_app_secret%"]
     user.service:
         class: AppBundle\Service\UserService
         arguments: ["@doctrine.orm.entity_manager"]
