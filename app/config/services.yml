@@ -7,7 +7,7 @@ parameters:
     facebook_app_secret: e082f3446f283be92f401e6c9d9877c7
 
 services:
-    instagram:
+    instagram.service:
         class: AppBundle\Service\InstagramService
         arguments: ["%instagram_client_id%", "%instagram_client_secret%"]
     facebook.service:

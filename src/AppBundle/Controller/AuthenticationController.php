@@ -32,7 +32,7 @@ class AuthenticationController extends Controller
             return $this->redirectToRoute('app_default_homepage');
         }
 
-        $instagramData = $this->get('instagram')->login(
+        $instagramData = $this->get('instagram.service')->login(
             $request->query->get('code'),
             $this->generateUrl('app_authentication_instagramloginhandler', [], UrlGeneratorInterface::ABSOLUTE_URL)
         );
