@@ -3,7 +3,6 @@
 
 namespace AppBundle\Service;
 
-use \HttpRequest;
 
 /**
  * Class InstagramService
