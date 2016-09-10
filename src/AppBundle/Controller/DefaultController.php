@@ -18,6 +18,14 @@ class DefaultController extends Controller
      */
     public function homePageAction(): Response
     {
+        $facebookLoginURL = $this->get('facebook.service')->getLoginURL(
+            $this->generateUrl(
+                'app_authentication_facebookloginhandler',
+                [],
+                UrlGeneratorInterface::ABSOLUTE_URL
+            )
+        );
+
         $instagramLoginURL = $this->get('instagram.service')->getLoginURL(
             $this->generateUrl(
                 'app_authentication_instagramloginhandler',
@@ -27,6 +35,7 @@ class DefaultController extends Controller
         );
 
         return $this->render(':default:index.html.twig', [
+            'facebook_login_url' => $facebookLoginURL,
             'instagram_login_url' => $instagramLoginURL
         ]);
     }

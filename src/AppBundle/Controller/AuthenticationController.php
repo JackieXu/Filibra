@@ -19,6 +19,39 @@ use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 class AuthenticationController extends Controller
 {
     /**
+     * Handles Facebook login redirect.
+     *
+     * @Route("/login/facebook")
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function facebookLoginHandler(Request $request): Response
+    {
+        $facebookService = $this->get('facebook.service');
+        $accessToken = $facebookService->getAccessToken();
+        $graphUser = $facebookService->getUserByAccessToken($accessToken);
+
+        if ($graphUser) {
+            $user = $this->get('user.service')->loginWithFacebook($accessToken, $graphUser);
+
+            $token = new UsernamePasswordToken($user, $user->getFacebookAccessToken(), 'main', ['ROLE_USER']);
+            $event = new InteractiveLoginEvent($request, $token);
+
+            $this->get('security.token_storage')->setToken($token);
+            $this->get('event_dispatcher')->dispatch('security.interactive_login', $event);
+
+            $this->addFlash('info', 'Succesfully logged in');
+
+            return $this->redirectToRoute('app_user_overviewpage');
+        }
+
+        $this->addFlash('error', 'Something went wrong via Facebook. Try again later.');
+
+        return $this->redirectToRoute('app_default_homepage');
+    }
+
+    /**
      * Handles Instagram login redirect.
      *
      * @Route("/login/instagram")
@@ -39,6 +72,7 @@ class AuthenticationController extends Controller
 
         if ($instagramData) {
             $user = $this->get('user.service')->loginWithInstragram($instagramData);
+
             $token = new UsernamePasswordToken($user, $user->getInstagramAccessToken(), 'main', ['ROLE_USER']);
             $event = new InteractiveLoginEvent($request, $token);
 

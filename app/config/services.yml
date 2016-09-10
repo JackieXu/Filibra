@@ -12,7 +12,7 @@ services:
         arguments: ["%instagram_client_id%", "%instagram_client_secret%"]
     facebook.service:
         class: AppBundle\Service\FacebookService
-        arguments: ["%%facebook_app_id%", "%%facebook_app_secret%"]
+        arguments: ["%facebook_app_id%", "%facebook_app_secret%"]
     user.service:
         class: AppBundle\Service\UserService
         arguments: ["@doctrine.orm.entity_manager"]

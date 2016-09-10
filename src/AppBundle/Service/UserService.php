@@ -6,6 +6,8 @@ namespace AppBundle\Service;
 
 use AppBundle\Entity\User;
 use Doctrine\Common\Persistence\ObjectManager;
+use Facebook\Authentication\AccessToken;
+use Facebook\GraphNodes\GraphUser;
 
 /**
  * Class UserService
@@ -35,9 +37,38 @@ class UserService
         $this->userRepository = $entityManager->getRepository('AppBundle:User');
     }
 
+    /**
+     * Log in with Facebook.
+     *
+     * @param AccessToken $accessToken
+     * @param GraphUser $graphUser
+     * @return User|null
+     */
+    public function loginWithFacebook(AccessToken $accessToken, GraphUser $graphUser)
+    {
+        $user = $this->userRepository->findOneBy([
+            'facebookId' => $graphUser->getId()
+        ]);
+
+        if ($user) {
+            return $user;
+        }
+
+        $user = new User();
+        $user->setName($graphUser->getName());
+        $user->setAvatarURL($graphUser->getPicture()->getUrl());
+        $user->setFacebookId($graphUser->getId());
+        $user->setFacebookAccessToken($accessToken->getValue());
+
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
+
+        return $user;
+    }
+
 
     /**
-     * Login with Instagram.
+     * Log in with Instagram.
      *
      * @param array $instagramData
      * @return User

@@ -25,6 +25,7 @@
                             {% if app.user %}
                             <a class="button" href="{{ path('app_authentication_logouthandler') }}">Logout</a>
                             {% else %}
+                            <a class="button" href="{{ facebook_login_url }}">Login with Facebook</a>
                             <a class="button" href="{{ instagram_login_url }}">Login with Instagram</a>
                             {% endif %}
                         </li>
