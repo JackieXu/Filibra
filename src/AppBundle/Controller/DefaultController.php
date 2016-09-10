@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class DefaultController extends Controller
 {
@@ -17,7 +18,17 @@ class DefaultController extends Controller
      */
     public function homePageAction(): Response
     {
-        return $this->render(':default:index.html.twig');
+        $instagramLoginURL = $this->get('instagram.service')->getLoginURL(
+            $this->generateUrl(
+                'app_authentication_instagramloginhandler',
+                [],
+                UrlGeneratorInterface::ABSOLUTE_URL
+            )
+        );
+
+        return $this->render(':default:index.html.twig', [
+            'instagram_login_url' => $instagramLoginURL
+        ]);
     }
 
     /**
