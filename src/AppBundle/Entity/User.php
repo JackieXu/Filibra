@@ -83,6 +83,24 @@ class User implements UserInterface
     protected $instagramAccessToken;
 
     /**
+     * User Facebook identifier.
+     *
+     * @ORM\Column(type="string", length=255)
+     *
+     * @var string
+     */
+    protected $facebookId;
+
+    /**
+     * User Facebook access token.
+     *
+     * @ORM\Column(type="string", length=255)
+     *
+     * @var string
+     */
+    protected $facebookAccessToken;
+
+    /**
      * Challenges the user is or has participated in.
      *
      * @ORM\ManyToMany(targetEntity="Challenge", inversedBy="users")
@@ -91,6 +109,14 @@ class User implements UserInterface
      * @var ArrayCollection
      */
     protected $challenges;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->challenges = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -245,12 +271,54 @@ class User implements UserInterface
     {
         return $this->instagramAccessToken;
     }
+
+
     /**
-     * Constructor
+     * Set facebookId
+     *
+     * @param string $facebookId
+     *
+     * @return User
      */
-    public function __construct()
+    public function setFacebookId($facebookId)
     {
-        $this->challenges = new ArrayCollection();
+        $this->facebookId = $facebookId;
+
+        return $this;
+    }
+
+    /**
+     * Get facebookId
+     *
+     * @return string
+     */
+    public function getFacebookId()
+    {
+        return $this->facebookId;
+    }
+
+    /**
+     * Set facebookAccessToken
+     *
+     * @param string $facebookAccessToken
+     *
+     * @return User
+     */
+    public function setFacebookAccessToken($facebookAccessToken)
+    {
+        $this->facebookAccessToken = $facebookAccessToken;
+
+        return $this;
+    }
+
+    /**
+     * Get facebookAccessToken
+     *
+     * @return string
+     */
+    public function getFacebookAccessToken()
+    {
+        return $this->facebookAccessToken;
     }
 
     /**
