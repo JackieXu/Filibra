@@ -40,7 +40,7 @@ class User implements UserInterface
     /**
      * User avatar URL.
      *
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      *
      * @var string
      */
@@ -49,7 +49,7 @@ class User implements UserInterface
     /**
      * User website URL.
      *
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      *
      * @var string
      */
