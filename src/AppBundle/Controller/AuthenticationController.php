@@ -71,7 +71,7 @@ class AuthenticationController extends Controller
         );
 
         if ($instagramData) {
-            $user = $this->get('user.service')->loginWithInstragram($instagramData);
+            $user = $this->get('user.service')->loginWithInstagram($instagramData);
 
             $token = new UsernamePasswordToken($user, $user->getInstagramAccessToken(), 'main', ['ROLE_USER']);
             $event = new InteractiveLoginEvent($request, $token);

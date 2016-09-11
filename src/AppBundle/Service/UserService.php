@@ -73,7 +73,7 @@ class UserService
      * @param array $instagramData
      * @return User
      */
-    public function loginWithInstragram(array $instagramData)
+    public function loginWithInstagram(array $instagramData)
     {
         $user = $this->userRepository->findOneBy([
             'instagramId' => $instagramData['user']['id']
