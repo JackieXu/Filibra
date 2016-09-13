@@ -12,4 +12,39 @@ use Doctrine\ORM\EntityRepository;
  */
 class ChallengeRepository extends EntityRepository
 {
+    /**
+     * Finds and returns all active challenges.
+     *
+     * @return array
+     */
+    public function findAllActiveChallenges(): array
+    {
+        $startDate = new \DateTime('2016-01-01 00:00:00');
+        $currentDate = new \DateTime();
+
+        return $this->findActiveChallengesBetween($startDate, $currentDate);
+    }
+
+    /**
+     * Finds and returns all active challenges in between two dates.
+     *
+     * @param \DateTime $from
+     * @param \DateTime $to
+     * @return array
+     */
+    public function findActiveChallengesBetween(\DateTime $from, \DateTime $to): array
+    {
+        $queryBuilder = $this->getEntityManager()->createQueryBuilder();
+
+        return $queryBuilder
+            ->select('challenge')
+            ->from('AppBundle:Challenge', 'challenge')
+            ->where($queryBuilder->expr()->between('challenge.finishDate', ':from', ':to'))
+            ->setParameters([
+                'from' => $from,
+                'to' => $to
+            ])
+            ->getQuery()
+            ->getResult();
+    }
 }
