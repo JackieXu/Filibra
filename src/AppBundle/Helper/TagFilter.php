@@ -3,7 +3,7 @@ namespace AppBundle\Helper;
 
 use AppBundle\Entity\Challenge;
 
-class InstagramTagFilter
+class TagFilter
 {
 
     // tag to filter entries on
@@ -14,9 +14,24 @@ class InstagramTagFilter
         $this->tag = $challenge->getHashTag();
     }
 
-    public function filter($entry)
+    /**
+     * Tag filter for Instagram entries
+     * @param $entry
+     * @return bool
+     */
+    public function instagramFilter($entry)
     {
         return in_array($this->tag, $entry['tags']);
+    }
+
+    /**
+     * Tag filter for Facebook entries
+     * @param $entry
+     * @return bool
+     */
+    public function facebookFilter($entry)
+    {
+        return true;
     }
 
 }
