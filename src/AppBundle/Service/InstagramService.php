@@ -3,6 +3,10 @@
 
 namespace AppBundle\Service;
 
+use AppBundle\Entity\Challenge;
+use AppBundle\Entity\User;
+use AppBundle\Helper\TagFilter;
+
 
 /**
  * Class InstagramService
@@ -12,6 +16,10 @@ namespace AppBundle\Service;
 class InstagramService
 {
     const ACCESS_TOKEN_URI = 'https://api.instagram.com/oauth/access_token';
+
+    // API endpoints
+    const ENDP_USERINFO = 'https://api.instagram.com/v1/users/%s';
+    const ENDP_MEDIA = 'https://api.instagram.com/v1/users/%s/media/recent';
 
     /**
      * Instagram client id.
@@ -78,6 +86,73 @@ class InstagramService
         }
 
         return false;
+    }
+
+    public function getUserMediaForChallenge(User $user, Challenge $challenge)
+    {
+        $tagFilter = new TagFilter($challenge);
+
+        // array containing all media for this challenge
+        $userMedia = [];
+
+        // retrieve media in pages, instagram returns 20 items by default
+        $nextMaxId = null;
+
+        do {
+            // retrieve data from Instagram api
+            $recentMediaUrl = $this->getRecentMediaURL($user);
+            $data = $this->get($recentMediaUrl, ['access_token' => $user->getInstagramAccessToken(),
+                'count' => 20, 'max_id' => $nextMaxId]);
+
+            // reset nextMaxId so that any errors will not cause an infinite loop
+            $nextMaxId = null;
+            if ($data !== false) {
+                if ($data['meta']['code'] === 200) {
+                    // filter every image by its hashtags for this challenge
+                    $filtered = array_filter($data['data'], array($tagFilter, 'instagramFilter'));
+
+                    $userMedia = array_merge($userMedia, $filtered);
+
+                    // null if next_url is not set, end loop here.
+                    // TODO: stop looking for images posted before challenge start date.
+                    $nextMaxId = $data['pagination']['next_max_id'] ?? null;
+                }
+            }
+        } while ($nextMaxId !== null);
+
+        return $userMedia;
+    }
+
+    private function getRecentMediaURL(User $user, $page = 1): string
+    {
+        return sprintf(self::ENDP_MEDIA, $user->getInstagramId());
+    }
+
+    /**
+     * Sends GET request.
+     *
+     * @param string $URL
+     * @param array $parameters
+     * @return bool|string
+     */
+    protected function get($URL, array $parameters)
+    {
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, $URL . "?" . http_build_query($parameters));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+        $dataString = curl_exec($ch);
+
+        curl_close($ch);
+
+        $data = json_decode($dataString, true);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            return false;
+        }
+
+        return $data;
     }
 
     /**
