@@ -16,6 +16,7 @@ class TagFilter
 
     /**
      * Tag filter for Instagram entries
+     *
      * @param $entry
      * @return bool
      */
