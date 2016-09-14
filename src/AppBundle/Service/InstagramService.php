@@ -4,8 +4,9 @@
 namespace AppBundle\Service;
 
 use AppBundle\Entity\Challenge;
+use AppBundle\Entity\Entry;
 use AppBundle\Entity\User;
-use AppBundle\Helper\TagFilter;
+use AppBundle\Helper\EntryFilter;
 
 
 /**
@@ -88,9 +89,36 @@ class InstagramService
         return false;
     }
 
-    public function getUserMediaForChallenge(User $user, Challenge $challenge)
+    /**
+     * Generate entities for user's challenge entries
+     *
+     * @param User $user
+     * @param Challenge $challenge
+     * @return array
+     */
+    public function getUserEntriesForChallenge(User $user, Challenge $challenge)
     {
-        $tagFilter = new TagFilter($challenge);
+        $media = $this->getUserMediaForChallenge($user, $challenge);
+
+        $entries = [];
+
+        foreach ($media as $m){
+            $entry = new Entry();
+            $entry->setUser($user);
+            $entry->setChallenge($challenge);
+            $entry->setMediaUrl($m['link']);
+            $entry->setLikes($m['likes']['count']);
+            $entry->setComments($m['comments']['count']);
+
+            $entries[] = $entry;
+        }
+
+        return $entries;
+    }
+
+    private function getUserMediaForChallenge(User $user, Challenge $challenge)
+    {
+        $entryFilter = new EntryFilter($challenge);
 
         // array containing all media for this challenge
         $userMedia = [];
@@ -106,24 +134,23 @@ class InstagramService
 
             // reset nextMaxId so that any errors will not cause an infinite loop
             $nextMaxId = null;
-            if ($data !== false) {
-                if ($data['meta']['code'] === 200) {
-                    // filter every image by its hashtags for this challenge
-                    $filtered = array_filter($data['data'], array($tagFilter, 'instagramFilter'));
+            if ($data !== false && $data['meta']['code'] === 200) {
+                // filter every image by its hashtags and date for this challenge
+                $filtered = array_filter($data['data'], array($entryFilter, 'instagramFilter'));
 
-                    $userMedia = array_merge($userMedia, $filtered);
+                // remove unused variables in array
+                $userMedia = array_merge($userMedia, $filtered);
 
-                    // null if next_url is not set, end loop here.
-                    // TODO: stop looking for images posted before challenge start date.
-                    $nextMaxId = $data['pagination']['next_max_id'] ?? null;
-                }
+                // null if next_url is not set, end loop here.
+                // TODO: stop looking for images posted before challenge start date.
+                $nextMaxId = $data['pagination']['next_max_id'] ?? null;
             }
         } while ($nextMaxId !== null);
 
         return $userMedia;
     }
 
-    private function getRecentMediaURL(User $user, $page = 1): string
+    private function getRecentMediaURL(User $user): string
     {
         return sprintf(self::ENDP_MEDIA, $user->getInstagramId());
     }

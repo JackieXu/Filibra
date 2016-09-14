@@ -109,11 +109,21 @@ class Challenge
     protected $users;
 
     /**
+     * Entries for this challenge
+     *
+     * @ORM\OneToMany(targetEntity="Entry", mappedBy="challenges")
+     *
+     * @var ArrayCollection
+     */
+    protected $entries;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->entries = new ArrayCollection();
     }
 
     /**
@@ -350,5 +360,39 @@ class Challenge
     public function getUsers()
     {
         return $this->users;
+    }
+
+    /**
+     * Add entry
+     *
+     * @param \AppBundle\Entity\Entry $entry
+     *
+     * @return Challenge
+     */
+    public function addEntry(\AppBundle\Entity\Entry $entry)
+    {
+        $this->entries[] = $entry;
+
+        return $this;
+    }
+
+    /**
+     * Remove entry
+     *
+     * @param \AppBundle\Entity\Entry $entry
+     */
+    public function removeEntry(\AppBundle\Entity\Entry $entry)
+    {
+        $this->entries->removeElement($entry);
+    }
+
+    /**
+     * Get entries
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEntries()
+    {
+        return $this->entries;
     }
 }
