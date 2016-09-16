@@ -2,4 +2,11 @@
 
 {% block body %}
     <h1>Hier komt nog iets.</h1>
+
+
+    {% for challenge in featured_challenges %}
+        <span>{{ challenge.name }}</span>
+        <span>&euro; {{ challenge.prize }}</span>
+    {% endfor %}
+
 {% endblock %}

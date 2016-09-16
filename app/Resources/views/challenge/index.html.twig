@@ -1,3 +1,7 @@
-{% for challenge in challenges %}
-    <span>{{ challenge.name }}</span>
-{% endfor %}
+{% extends "::base.html.twig" %}
+
+{% block body %}
+    {% for challenge in challenges %}
+        <span>{{ challenge.name }}</span>
+    {% endfor %}
+{% endblock %}

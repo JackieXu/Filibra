@@ -9,7 +9,12 @@
 namespace AppBundle\Helper;
 
 
+
+use AppBundle\Entity\Entry;
+
 interface ScoringInterface
 {
+
+    public function score(Entry $entry): int;
 
 }

@@ -34,9 +34,13 @@ class DefaultController extends Controller
             )
         );
 
+        $challengeRepository = $this->getDoctrine()->getManager()->getRepository('AppBundle:Challenge');
+        $featuredChallenges = $challengeRepository->findFeaturedChallenges();
+
         return $this->render(':default:index.html.twig', [
             'facebook_login_url' => $facebookLoginURL,
-            'instagram_login_url' => $instagramLoginURL
+            'instagram_login_url' => $instagramLoginURL,
+            'featured_challenges' => $featuredChallenges
         ]);
     }
 

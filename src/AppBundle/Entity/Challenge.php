@@ -111,7 +111,7 @@ class Challenge
     /**
      * Entries for this challenge
      *
-     * @ORM\OneToMany(targetEntity="Entry", mappedBy="challenges")
+     * @ORM\OneToMany(targetEntity="Entry", mappedBy="challenge")
      *
      * @var ArrayCollection
      */

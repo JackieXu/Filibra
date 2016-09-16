@@ -9,7 +9,13 @@
 namespace AppBundle\Helper;
 
 
-class FacebookScoring
+use AppBundle\Entity\Entry;
+
+class FacebookScoring implements ScoringInterface
 {
 
+    public function score(Entry $entry): int
+    {
+        return 0;
+    }
 }

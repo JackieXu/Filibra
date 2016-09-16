@@ -35,6 +35,16 @@ class ChallengeRepository extends EntityRepository
     }
 
     /**
+     * Finds featured challenges for index page
+     *
+     * @return array
+     */
+    public function findFeaturedChallenges(): array
+    {
+        return $this->findAllActiveChallenges();
+    }
+
+    /**
      * Finds and returns all active challenges in between two dates.
      *
      * @param \DateTime $from

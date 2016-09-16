@@ -68,6 +68,13 @@ class Entry
     protected $comments;
 
     /**
+     * @ORM\Column(type="integer")
+     *
+     * @var int
+     */
+    protected $score;
+
+    /**
      * Get id
      *
      * @return integer
@@ -195,5 +202,29 @@ class Entry
     public function getMediaUrl()
     {
         return $this->media_url;
+    }
+
+    /**
+     * Set score
+     *
+     * @param integer $score
+     *
+     * @return Entry
+     */
+    public function setScore($score)
+    {
+        $this->score = $score;
+
+        return $this;
+    }
+
+    /**
+     * Get score
+     *
+     * @return integer
+     */
+    public function getScore()
+    {
+        return $this->score;
     }
 }

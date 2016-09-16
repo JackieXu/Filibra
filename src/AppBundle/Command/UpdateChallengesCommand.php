@@ -3,6 +3,7 @@ namespace AppBundle\Command;
 
 use AppBundle\Entity\Challenge;
 use AppBundle\Entity\Entry;
+use AppBundle\Helper\InstagramScoring;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
@@ -49,8 +50,11 @@ class UpdateChallengesCommand extends ContainerAwareCommand
     {
         $this->output->writeln("Updating challenge " . $challenge->getName());
 
+        // score calculation helper
+        $scorer = new InstagramScoring();
+
         foreach ($challenge->getUsers() as $participant) {
-            $entries = $this->instagramService->getUserEntriesForChallenge($participant, $challenge);
+            $entries = $this->instagramService->getUserEntriesForChallenge($participant, $challenge, $scorer);
 
             foreach ($entries as $e){
                 $this->entityManager->persist($e);

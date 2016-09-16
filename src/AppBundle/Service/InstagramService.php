@@ -7,6 +7,8 @@ use AppBundle\Entity\Challenge;
 use AppBundle\Entity\Entry;
 use AppBundle\Entity\User;
 use AppBundle\Helper\EntryFilter;
+use AppBundle\Helper\InstagramScoring;
+use AppBundle\Helper\ScoringInterface;
 
 
 /**
@@ -96,7 +98,7 @@ class InstagramService
      * @param Challenge $challenge
      * @return array
      */
-    public function getUserEntriesForChallenge(User $user, Challenge $challenge)
+    public function getUserEntriesForChallenge(User $user, Challenge $challenge, InstagramScoring $scoring)
     {
         $media = $this->getUserMediaForChallenge($user, $challenge);
 
@@ -109,6 +111,8 @@ class InstagramService
             $entry->setMediaUrl($m['link']);
             $entry->setLikes($m['likes']['count']);
             $entry->setComments($m['comments']['count']);
+
+            $entry->setScore($scoring->score($entry));
 
             $entries[] = $entry;
         }
