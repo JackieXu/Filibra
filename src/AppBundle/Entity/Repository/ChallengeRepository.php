@@ -19,10 +19,19 @@ class ChallengeRepository extends EntityRepository
      */
     public function findAllActiveChallenges(): array
     {
-        $startDate = new \DateTime('2016-01-01 00:00:00');
         $currentDate = new \DateTime();
+        $queryBuilder = $this->getEntityManager()->createQueryBuilder();
 
-        return $this->findActiveChallengesBetween($startDate, $currentDate);
+        return $queryBuilder
+            ->select('challenge')
+            ->from('AppBundle:Challenge', 'challenge')
+            ->where($queryBuilder->expr()->gt('challenge.finishDate', ':current'))
+            ->andWhere($queryBuilder->expr()->lt('challenge.startDate', ':current'))
+            ->setParameters([
+                'current' => $currentDate
+            ])
+            ->getQuery()
+            ->getResult();
     }
 
     /**
