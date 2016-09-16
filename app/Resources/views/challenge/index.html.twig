@@ -2,6 +2,9 @@
 
 {% block body %}
     {% for challenge in challenges %}
-        <span>{{ challenge.name }}</span>
+        <a href="{{ path('challenge', {'slug': challenge.slug}) }}">
+            <span>{{ challenge.name }}</span>
+            <span>&euro; {{ challenge.prize }}</span>
+        </a>
     {% endfor %}
-{% endblock %}
+{% endblock body %}

@@ -2,11 +2,14 @@
 
 {% block body %}
     <h1>Hier komt nog iets.</h1>
+    <a href="{{ path('challenges') }}">All challenges</a>
 
 
     {% for challenge in featured_challenges %}
-        <span>{{ challenge.name }}</span>
-        <span>&euro; {{ challenge.prize }}</span>
+        <a href="{{ path('challenge', {'slug': challenge.slug}) }}">
+            <span>{{ challenge.name }}</span>
+            <span>&euro; {{ challenge.prize }}</span>
+        </a>
     {% endfor %}
 
-{% endblock %}
+{% endblock body %}

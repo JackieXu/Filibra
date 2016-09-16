@@ -43,12 +43,12 @@ class AuthenticationController extends Controller
 
             $this->addFlash('info', 'Succesfully logged in');
 
-            return $this->redirectToRoute('app_user_overviewpage');
+            return $this->redirectToRoute('overview');
         }
 
         $this->addFlash('error', 'Something went wrong via Facebook. Try again later.');
 
-        return $this->redirectToRoute('app_default_homepage');
+        return $this->redirectToRoute('index');
     }
 
     /**
@@ -62,7 +62,7 @@ class AuthenticationController extends Controller
     public function instagramLoginHandler(Request $request): Response
     {
         if ($request->query->has('error')) {
-            return $this->redirectToRoute('app_default_homepage');
+            return $this->redirectToRoute('index');
         }
 
         $instagramData = $this->get('instagram.service')->login(
@@ -81,12 +81,12 @@ class AuthenticationController extends Controller
 
             $this->addFlash('info', 'Succesfully logged in');
 
-            return $this->redirectToRoute('app_user_overviewpage');
+            return $this->redirectToRoute('overview');
         }
 
         $this->addFlash('error', 'Something went wrong via Instagram. Try again later.');
 
-        return $this->redirectToRoute('app_default_homepage');
+        return $this->redirectToRoute('index');
     }
 
     /**
@@ -108,6 +108,6 @@ class AuthenticationController extends Controller
             $this->addFlash('error', 'Not logged in; unable to log out.');
         }
 
-        return $this->redirectToRoute('app_default_homepage');
+        return $this->redirectToRoute('index');
     }
 }

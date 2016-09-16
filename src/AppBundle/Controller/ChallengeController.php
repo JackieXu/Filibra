@@ -16,7 +16,7 @@ class ChallengeController extends Controller
     /**
      * Displays list of challenges.
      *
-     * @Route("/challenges")
+     * @Route("/challenges", name="challenges")
      *
      * @return Response
      */
@@ -28,5 +28,34 @@ class ChallengeController extends Controller
         return $this->render('challenge/index.html.twig', [
             'challenges' => $challenges
         ]);
+    }
+
+    /**
+     * View single challenge page
+     *
+     * @Route("/challenge/{slug}", name="challenge", requirements={"slug" = "[a-zA-Z0-9\-\_]+"})
+     *
+     * @return Response
+     */
+    public function viewChallengeAction($slug): Response
+    {
+        $challengeRepository = $this->getDoctrine()->getManager()->getRepository('AppBundle:Challenge');
+        $challenge = $challengeRepository->findOneBySlug($slug);
+
+        return $this->render('challenge/challenge.html.twig', [
+            'challenge' => $challenge,
+        ]);
+    }
+
+    /**
+     * Join challenge
+     *
+     * @Route("/challenge/{slug}/join", name="join_challenge", requirements={"slug" = "[a-zA-Z0-9\-\_]+"})
+     *
+     * @return Response
+     */
+    public function joinChallengeAction($slug): Response
+    {
+        return null;
     }
 }

@@ -37,6 +37,15 @@ class Challenge
     protected $name;
 
     /**
+     * URL Slug
+     *
+     * @ORM\Column(type="string", length=255)
+     *
+     * @var string
+     */
+    protected $slug;
+
+    /**
      * Challenge prize money.
      *
      * @ORM\Column(type="integer")
@@ -102,11 +111,11 @@ class Challenge
     /**
      * Users participating in challenge.
      *
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="challenges")
+     * @ORM\OneToMany(targetEntity="ChallengeUser", mappedBy="challenge")
      *
      * @var ArrayCollection
      */
-    protected $users;
+    protected $participants;
 
     /**
      * Entries for this challenge
@@ -122,7 +131,7 @@ class Challenge
      */
     public function __construct()
     {
-        $this->users = new ArrayCollection();
+        $this->participants = new ArrayCollection();
         $this->entries = new ArrayCollection();
     }
 
@@ -329,30 +338,6 @@ class Challenge
     }
 
     /**
-     * Add user
-     *
-     * @param User $user
-     *
-     * @return Challenge
-     */
-    public function addUser(User $user)
-    {
-        $this->users[] = $user;
-
-        return $this;
-    }
-
-    /**
-     * Remove user
-     *
-     * @param User $user
-     */
-    public function removeUser(User $user)
-    {
-        $this->users->removeElement($user);
-    }
-
-    /**
      * Get users
      *
      * @return \Doctrine\Common\Collections\Collection
@@ -394,5 +379,63 @@ class Challenge
     public function getEntries()
     {
         return $this->entries;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Challenge
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Add participant
+     *
+     * @param \AppBundle\Entity\ChallengeUser $participant
+     *
+     * @return Challenge
+     */
+    public function addParticipant(\AppBundle\Entity\ChallengeUser $participant)
+    {
+        $this->participants[] = $participant;
+
+        return $this;
+    }
+
+    /**
+     * Remove participant
+     *
+     * @param \AppBundle\Entity\ChallengeUser $participant
+     */
+    public function removeParticipant(\AppBundle\Entity\ChallengeUser $participant)
+    {
+        $this->participants->removeElement($participant);
+    }
+
+    /**
+     * Get participants
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getParticipants()
+    {
+        return $this->participants;
     }
 }

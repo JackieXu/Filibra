@@ -1,0 +1,10 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+    <h1>{{ challenge.name }}</h1>
+    <a href="{{ path('join_challenge', {'slug': challenge.slug}) }}">Join challenge</a>
+
+    {% for participant in challenge.participants %}
+        <div>{{ loop.index }} - {{ participant.user.name }} : {{ participant.score }}</div>
+    {% endfor %}
+{% endblock body %}

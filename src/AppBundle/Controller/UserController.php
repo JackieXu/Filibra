@@ -17,7 +17,7 @@ class UserController extends Controller
     /**
      * Displays user's overview page.
      *
-     * @Route("/overview")
+     * @Route("/overview", name="overview")
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */

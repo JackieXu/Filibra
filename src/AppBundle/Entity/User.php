@@ -103,8 +103,7 @@ class User implements UserInterface
     /**
      * Challenges the user is or has participated in.
      *
-     * @ORM\ManyToMany(targetEntity="Challenge", inversedBy="users")
-     * @ORM\JoinTable(name="user_challenges")
+     * @ORM\OneToMany(targetEntity="ChallengeUser", mappedBy="user")
      *
      * @var ArrayCollection
      */
