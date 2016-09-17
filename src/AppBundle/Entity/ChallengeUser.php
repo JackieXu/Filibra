@@ -17,7 +17,7 @@ class ChallengeUser
 {
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Challenge", inversedBy="participations")
+     * @ORM\ManyToOne(targetEntity="Challenge", inversedBy="participants")
      * @ORM\JoinColumn(name="challenge_id", referencedColumnName="id", nullable=false)
      */
     protected $challenge;

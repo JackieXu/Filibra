@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @package AppBundle\Controller
  */
-class ChallengeController extends Controller
+class ChallengeController extends BaseController
 {
     /**
      * Displays list of challenges.

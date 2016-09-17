@@ -53,15 +53,15 @@ class UpdateChallengesCommand extends ContainerAwareCommand
         // score calculation helper
         $scorer = new InstagramScoring();
 
-        foreach ($challenge->getUsers() as $participant) {
-            $entries = $this->instagramService->getUserEntriesForChallenge($participant, $challenge, $scorer);
+        foreach ($challenge->getParticipants() as $participant) {
+            $entries = $this->instagramService->getUserEntriesForChallenge($participant->getUser(), $challenge, $scorer);
 
             foreach ($entries as $e){
                 $this->entityManager->persist($e);
             }
 
             $this->output->writeln(sprintf("%d items for user %s in challenge %s.", count($entries),
-                $participant->getName(), $challenge->getName()));
+                $participant->getUser()->getName(), $challenge->getName()));
         }
 
         $this->entityManager->flush();

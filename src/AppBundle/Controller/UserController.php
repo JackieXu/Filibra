@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @package AppBundle\Controller
  */
-class UserController extends Controller
+class UserController extends BaseController
 {
     /**
      * Displays user's overview page.
