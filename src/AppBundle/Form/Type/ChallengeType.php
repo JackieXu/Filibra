@@ -26,6 +26,7 @@ class ChallengeType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
+            ->add('slug', TextType::class)
             ->add('prize', IntegerType::class)
             ->add('hashTag', TextType::class)
             ->add('startDate', DateTimeType::class)
