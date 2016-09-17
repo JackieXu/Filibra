@@ -2,4 +2,10 @@
 
 {% block body %}
     <div>{{ app.user.name }}</div>
+    {% if not app.user.facebookId %}
+        <a class="button" href="{{ facebook_login_url }}">Connect Facebook to account.</a>
+    {% endif %}
+    {% if not app.user.instagramId %}
+        <a class="button" href="{{ instagram_login_url }}">Connect Instagram to account.</a>
+    {% endif %}
 {% endblock %}

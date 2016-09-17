@@ -71,6 +71,14 @@ class AuthenticationController extends Controller
         );
 
         if ($instagramData) {
+            if ($this->isGranted('ROLE_USER')) {
+                $this->get('user.service')->linkToInstagram($this->getUser(), $instagramData);
+
+                $this->addFlash('info', 'Succesfully connected Instagram account!');
+
+                return $this->redirectToRoute('app_user_profilepage');
+            }
+
             $user = $this->get('user.service')->loginWithInstagram($instagramData);
 
             $token = new UsernamePasswordToken($user, $user->getInstagramAccessToken(), 'main', $user->getRoles());

@@ -98,4 +98,15 @@ class UserService
 
         return $user;
     }
+
+    public function linkToInstagram(User $user, array $instagramData): User
+    {
+        $user->setInstagramId($instagramData['user']['id']);
+        $user->setInstagramUsername($instagramData['user']['username']);
+        $user->setInstagramAccessToken($instagramData['access_token']);
+
+        $this->entityManager->flush();
+
+        return $user;
+    }
 }
