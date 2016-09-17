@@ -35,7 +35,7 @@ class AuthenticationController extends Controller
         if ($graphUser) {
             $user = $this->get('user.service')->loginWithFacebook($accessToken, $graphUser);
 
-            $token = new UsernamePasswordToken($user, $user->getFacebookAccessToken(), 'main', ['ROLE_USER']);
+            $token = new UsernamePasswordToken($user, $user->getFacebookAccessToken(), 'main', $user->getRoles());
             $event = new InteractiveLoginEvent($request, $token);
 
             $this->get('security.token_storage')->setToken($token);
@@ -73,7 +73,7 @@ class AuthenticationController extends Controller
         if ($instagramData) {
             $user = $this->get('user.service')->loginWithInstagram($instagramData);
 
-            $token = new UsernamePasswordToken($user, $user->getInstagramAccessToken(), 'main', ['ROLE_USER']);
+            $token = new UsernamePasswordToken($user, $user->getInstagramAccessToken(), 'main', $user->getRoles());
             $event = new InteractiveLoginEvent($request, $token);
 
             $this->get('security.token_storage')->setToken($token);
