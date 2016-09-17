@@ -32,4 +32,23 @@ class UserController extends BaseController
 
         return $this->render(':default:index.html.twig');
     }
+
+    /**
+     * Displays user's profile page.
+     *
+     * @Route("/profile")
+     *
+     * @return Response
+     */
+    public function profilePageAction(): Response
+    {
+        if (!$this->isGranted('ROLE_USER')) {
+
+            $this->addFlash('error', 'You need to be logged in to view this page.');
+
+            return $this->render(':default:index.html.twig')->setStatusCode(403);
+        }
+
+        return $this->render(':user:profile.html.twig', []);
+    }
 }
