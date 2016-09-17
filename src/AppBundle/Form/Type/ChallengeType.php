@@ -33,7 +33,6 @@ class ChallengeType extends AbstractType
             ->add('sponsorName', TextType::class)
             ->add('sponsorImageURL', TextType::class)
             ->add('sponsorWebsiteURL', TextType::class)
-            ->add('users')
         ;
     }
     
