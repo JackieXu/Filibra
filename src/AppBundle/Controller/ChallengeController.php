@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Challenge;
+use AppBundle\Entity\ChallengeUser;
 use AppBundle\Form\Type\ChallengeType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -101,5 +102,23 @@ class ChallengeController extends BaseController
     {
         $challengeRepository = $this->getDoctrine()->getManager()->getRepository('AppBundle:Challenge');
         $challenge = $challengeRepository->findOneBySlug($slug);
+
+        if (!$challenge){
+            return $this->render(':challenge:not_found.html.twig');
+        }
+
+        #TODO: Check whether user is already participating in challenge
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $challengeUser = new ChallengeUser();
+        $challengeUser->setChallenge($challenge);
+        $challengeUser->setUser($this->getUser());
+
+        $entityManager->persist($challengeUser);
+        $entityManager->flush();
+
+        $this->addFlash('info', $this->get('translator')->trans('challenge.flashes.joined'));
+
+        return $this->redirectToRoute('challenge', ['slug' => $challenge->getSlug()]);
     }
 }

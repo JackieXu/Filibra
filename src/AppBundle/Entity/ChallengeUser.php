@@ -36,6 +36,11 @@ class ChallengeUser
      */
     protected $score;
 
+    public function __construct()
+    {
+        $this->score = 0;
+    }
+
     /**
      * Set score
      *

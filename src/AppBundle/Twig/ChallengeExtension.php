@@ -21,14 +21,14 @@ class ChallengeExtension extends Twig_Extension
     public function getFunctions(): array
     {
         return [
-            new Twig_SimpleFunction('challenge_datediff', array($this, 'dateDiff'))
+            new Twig_SimpleFunction('challenge_datediff', [$this, 'dateDiff'])
         ];
     }
 
     public function getFilters(): array
     {
         return [
-            new Twig_SimpleFilter('currency', array($this, 'currencyFilter'), array('is_safe' => array('html')))
+            new Twig_SimpleFilter('currency', [$this, 'currencyFilter'], ['is_safe' => ['html']])
         ];
     }
 
