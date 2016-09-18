@@ -46,7 +46,7 @@ class ChallengeExtension extends Twig_Extension
 
     public function currencyFilter(int $amount): string
     {
-        return '€ ' . number_format($amount, 2, ',', '.');
+        return '<span class="currency">€</span> <span class="amount">' . number_format($amount, 2, ',', '.') . '</span>';
     }
 
 
