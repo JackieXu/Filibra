@@ -28,7 +28,7 @@ class ChallengeExtension extends Twig_Extension
     public function getFilters(): array
     {
         return [
-            new Twig_SimpleFilter('currency', array($this, 'currencyFilter'))
+            new Twig_SimpleFilter('currency', array($this, 'currencyFilter'), array('is_safe' => array('html')))
         ];
     }
 
@@ -54,7 +54,7 @@ class ChallengeExtension extends Twig_Extension
 
     public function currencyFilter(int $amount): string
     {
-        return '€ ' . number_format($amount, 2, ',', '.');
+        return '<bold>fds</bold> ' . number_format($amount, 2, ',', '.');
     }
 
 
