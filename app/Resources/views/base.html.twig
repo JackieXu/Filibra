@@ -18,8 +18,8 @@
                 <div class="top-bar-left">
                     <ul class="menu">
                         <li class="menu-text"><a href="{{ path('index') }}">Filibra</a></li>
-                        <li class="menu-text"><a href="{{ path('index') }}">Home</a></li>
-                        <li class="menu-text"><a href="{{ path('challenges') }}">Challenges</a></li>
+                        <li class="menu-text{% if app.request.attributes.get('_route') == 'index' %} active{% endif %}"><a href="{{ path('index') }}">Home</a></li>
+                        <li class="menu-text{% if app.request.attributes.get('_route') == 'challenges' %} active{% endif %}"><a href="{{ path('challenges') }}">Challenges</a></li>
                     </ul>
                 </div>
                 {# TODO: Check to move this into a partial. #}
@@ -56,17 +56,17 @@
         {% block body %}{% endblock %}
         <footer class="page-footer">
             <div class="row">
-                <div class="footer-section contact large-3 columns">
+                <div class="footer-section contact medium-3 large-3 columns">
                     <h2 class="footer-heading">Get in touch</h2>
                     <a href="" class="footer-link">Facebook</a>
                     <a href="" class="footer-link">Instagram</a>
                 </div>
-                <div class="footer-section legal large-3 columns">
+                <div class="footer-section legal medium-3 large-3 columns">
                     <h2 class="footer-heading">Legal</h2>
                     <a href="" class="footer-link">Terms of service</a>
                     <a href="" class="footer-link">Privacy policy</a>
                 </div>
-                <div class="footer-section copy large-6 columns">
+                <div class="footer-section copy medium-6 large-6 columns">
                     <small class="copy-text">Copyright 2016 - Present <a class="copy-link" href="{{ path('index') }}">Insert Company Name</a></small>
                 </div>
             </div>

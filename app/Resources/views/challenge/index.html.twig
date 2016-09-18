@@ -1,10 +1,18 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
-    {% for challenge in challenges %}
-        <a href="{{ path('challenge', {'slug': challenge.slug}) }}">
-            <span>{{ challenge.name }}</span>
-            <span>&euro; {{ challenge.prize }}</span>
-        </a>
-    {% endfor %}
+    <section class="section hero">
+        <div class="row text-center">
+            <h1>Challenges</h1>
+        </div>
+    </section>
+    <section class="section challenges">
+        <div class="row">
+
+            {% for challenge in challenges %}
+                {% include 'challenge/blocks/featured_challenge.html.twig' with {'challenge': challenge} %}
+            {% endfor %}
+
+        </div>
+    </section>
 {% endblock body %}
