@@ -1,9 +1,17 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
-    <section class="callout">
-        <h1>Hier komt nog iets.</h1>
-        <a href="{{ path('challenges') }}">All challenges</a>
+    <section class="text-center">
+        <div class="row">
+            <h1 class="tagline center">
+                <div><span class="tagline-keyword">Join</span> <span class="tagline-text">a challenge</span></div>
+                <div><span class="tagline-keyword">Tag</span> <span class="tagline-text">your posts</span></div>
+                <div><span class="tagline-keyword">Earn</span> <span class="tagline-text">money</span></div>
+            </h1>
+        </div>
+        <div class="row">
+            <a class="button large" href="">Sign up now</a>
+        </div>
     </section>
     <section class="stats">
         <div class="row">
@@ -31,6 +39,9 @@
                 {% include 'challenge/blocks/featured_challenge.html.twig' with {'challenge': challenge} %}
             {% endfor %}
 
+        </div>
+        <div class="row text-center">
+            <a class="button large" href="{{ path('challenges') }}">View all challenges</a>
         </div>
     </section>
     <section class="section how-it-works">
