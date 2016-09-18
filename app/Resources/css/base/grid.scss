@@ -1,0 +1,10 @@
+@import "../variables/grid.scss";
+
+.row {
+  max-width: 120rem;
+}
+
+.columns {
+  margin-left: calc($gutter / 2);
+  margin-right: calc($gutter / 2);
+}
