@@ -18,6 +18,20 @@ class BaseController extends Controller
      */
     public function render($view, array $parameters = array(), Response $response = null): Response
     {
+        if (!$this->isGranted('ROLE_USER')) {
+            $this->addLoginURLS($parameters);
+        }
+
+        return parent::render($view, $parameters, $response);
+    }
+
+    /**
+     * Adds Facebook and Instagram login urls to parameters for rendering
+     *
+     * @param $parameters
+     */
+    private function addLoginURLS(&$parameters)
+    {
         $facebookLoginURL = $this->get('facebook.service')->getLoginURL(
             $this->generateUrl(
                 'app_authentication_facebookloginhandler',
@@ -36,7 +50,5 @@ class BaseController extends Controller
 
         $parameters['facebook_login_url'] = $facebookLoginURL;
         $parameters['instagram_login_url'] = $instagramLoginURL;
-
-        return parent::render($view, $parameters, $response);
     }
 }
