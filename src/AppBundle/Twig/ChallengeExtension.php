@@ -35,7 +35,7 @@ class ChallengeExtension extends Twig_Extension
 
         $i = 0;
         #                                   // prevent infinite loop
-        while ($diff->{$date_order[$i]} === 0 && $i < count($date_order)) {
+        while ($diff->{$date_order[$i]} === 0 && $i < count($date_order) - 1) {
             $i++;
         }
 
@@ -44,7 +44,7 @@ class ChallengeExtension extends Twig_Extension
         return $d . " " . $date_strings[$i] . ($d > 1 ? "s" : "");
     }
 
-    public function currencyFilter($amount): string
+    public function currencyFilter(int $amount): string
     {
         return '€ ' . number_format($amount, 2, ',', '.');
     }
