@@ -9,6 +9,7 @@
 
         <!-- Beauty is only a stylesheet deep -->
         <link rel="stylesheet" type="text/css" href="{{ asset('css/foundation.min.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" />
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
@@ -51,7 +52,23 @@
             </div>
         {% endfor %}
         {% block body %}{% endblock %}
-
+        <footer class="page-footer">
+            <div class="row">
+                <div class="footer-section contact large-3 columns">
+                    <h2 class="footer-heading">Get in touch</h2>
+                    <a href="" class="footer-link">Facebook</a>
+                    <a href="" class="footer-link">Instagram</a>
+                </div>
+                <div class="footer-section legal large-3 columns">
+                    <h2 class="footer-heading">Legal</h2>
+                    <a href="" class="footer-link">Terms of service</a>
+                    <a href="" class="footer-link">Privacy policy</a>
+                </div>
+                <div class="footer-section copy large-6 columns">
+                    <small class="copy-text">Copyright 2016 - Present <a class="copy-link" href="{{ path('index') }}">Insert Company Name</a></small>
+                </div>
+            </div>
+        </footer>
         <!-- This is where the magic happens -->
         <script src="{{ asset('js/jquery.js') }}"></script>
         <script src="{{ asset('js/foundation.min.js') }}"></script>

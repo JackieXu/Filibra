@@ -110,6 +110,15 @@ class User implements UserInterface
     protected $challenges;
 
     /**
+     * User roles
+     *
+     * @ORM\Column(type="string", length=255)
+     *
+     * @var string
+     */
+    protected $roles;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -355,13 +364,26 @@ class User implements UserInterface
     }
 
     /**
+     * Sets user roles.
+     *
+     * @param string $roles A comma delimited string of user roles.
+     * @return User
+     */
+    public function setRoles(string $roles)
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
      * Returns the roles granted to the user.
      *
      * @return string[] The user roles
      */
     public function getRoles()
     {
-        return ['ROLE_USER'];
+        return explode(',', $this->roles);
     }
 
     /**

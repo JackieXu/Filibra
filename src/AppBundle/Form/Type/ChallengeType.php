@@ -4,6 +4,8 @@ namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,21 +17,23 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class ChallengeType extends AbstractType
 {
     /**
+     * Builds ChallengeType form.
+     *
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('prize')
-            ->add('hashTag')
+            ->add('name', TextType::class)
+            ->add('slug', TextType::class)
+            ->add('prize', IntegerType::class)
+            ->add('hashTag', TextType::class)
             ->add('startDate', DateTimeType::class)
             ->add('finishDate', DateTimeType::class)
-            ->add('sponsorName')
-            ->add('sponsorImageURL')
-            ->add('sponsorWebsiteURL')
-            ->add('users')
+            ->add('sponsorName', TextType::class)
+            ->add('sponsorImageURL', TextType::class)
+            ->add('sponsorWebsiteURL', TextType::class)
         ;
     }
     

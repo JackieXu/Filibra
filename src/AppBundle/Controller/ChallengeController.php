@@ -2,8 +2,11 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Challenge;
+use AppBundle\Form\Type\ChallengeType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -27,6 +30,43 @@ class ChallengeController extends BaseController
 
         return $this->render(':challenge:index.html.twig', [
             'challenges' => $challenges
+        ]);
+    }
+
+    /**
+     * Displays challenge creation page.
+     *
+     * @Route("/challenges/new")
+     *
+     * TODO: Different action if user isn't an admin. Need proper pages for this.
+     * TODO: Handle dates properly for new challenges.
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function createPageAction(Request $request): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to view this page.');
+
+        $challenge = new Challenge();
+        $challengeForm = $this->createForm(ChallengeType::class, $challenge);
+
+        $challengeForm->handleRequest($request);
+
+        if ($challengeForm->isSubmitted() && $challengeForm->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($challenge);
+            $entityManager->flush();
+
+            $this->addFlash('info', 'Successfully created new challenge.');
+
+            return $this->redirectToRoute('challenge', [
+                'slug' => $challenge->getSlug()
+            ]);
+        }
+
+        return $this->render('challenge/form.html.twig', [
+            'form' => $challengeForm->createView()
         ]);
     }
 

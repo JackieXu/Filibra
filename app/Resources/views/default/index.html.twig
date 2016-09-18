@@ -1,15 +1,92 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
-    <h1>Hier komt nog iets.</h1>
-    <a href="{{ path('challenges') }}">All challenges</a>
-
-
-    {% for challenge in featured_challenges %}
+    <section class="callout">
+        <h1>Hier komt nog iets.</h1>
+        <a href="{{ path('challenges') }}">All challenges</a>
+    </section>
+    <section class="stats">
+        <div class="row">
+            <div class="stat large-4 columns">
+                <div class="stat-name">Paid out</div>
+                <div class="stat-value">&euro; 125.000,00</div>
+            </div>
+            <div class="stat large-4 columns">
+                <div class="stat-name">Earnings pool</div>
+                <div class="stat-value">&euro; 30.000,00</div>
+            </div>
+            <div class="stat large-4 columns">
+                <div class="stat-name">Next challenge</div>
+                <div class="stat-value">4 days</div>
+            </div>
+        </div>
+    </section>
+    <section class="section featured-challenges">
+        <header class="row section-heading">
+            <h2 class="section-header">New challenges</h2>
+        </header>
+        <div class="row">
+            <div class="challenge large-4 columns">
+                <h3 class="challenge-name"><span class="hash">#</span>ChallengeName</h3>
+                <img class="challenge-thumbnail">
+                <div class="challenge-details">
+                    <div class="challenge-detail detail row">
+                        <div class="detail-name large-6 columns">Earnings pool</div>
+                        <div class="detail-name large-6 columns">&euro; 10.000,00</div>
+                    </div>
+                    <div class="challenge-detail detail row">
+                        <div class="detail-name large-6 columns">Time left</div>
+                        <div class="detail-name large-6 columns">12 days</div>
+                    </div>
+                </div>
+            </div>
+            <div class="challenge large-4 columns">
+                <h3 class="challenge-name"><span class="hash">#</span>ChallengeName</h3>
+                <img class="challenge-thumbnail">
+                <div class="challenge-details">
+                    <div class="challenge-detail detail row">
+                        <div class="detail-name large-6 columns">Earnings pool</div>
+                        <div class="detail-name large-6 columns">&euro; 10.000,00</div>
+                    </div>
+                    <div class="challenge-detail detail row">
+                        <div class="detail-name large-6 columns">Time left</div>
+                        <div class="detail-name large-6 columns">12 days</div>
+                    </div>
+                </div>
+            </div>
+            <div class="challenge large-4 columns">
+                <h3 class="challenge-name"><span class="hash">#</span>ChallengeName</h3>
+                <img class="challenge-thumbnail">
+                <div class="challenge-details">
+                    <div class="challenge-detail detail row">
+                        <div class="detail-name large-6 columns">Earnings pool</div>
+                        <div class="detail-name large-6 columns">&euro; 10.000,00</div>
+                    </div>
+                    <div class="challenge-detail detail row">
+                        <div class="detail-name large-6 columns">Time left</div>
+                        <div class="detail-name large-6 columns">12 days</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section how-it-works">
+        <heading class="row section-heading">
+            <h2 class="section-header">How it works</h2>
+        </heading>
+        <div class="row">
+            <p class="center text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed nibh nulla. Duis elementum faucibus facilisis. Integer aliquet sodales ultricies. Maecenas laoreet mauris nisi, quis scelerisque tortor molestie id. Curabitur vel velit quis enim elementum vulputate. Vestibulum sed cursus nulla. Morbi vulputate nisl sit amet augue ultricies porttitor. Proin eu vestibulum justo. Nunc tempus purus nec nisl eleifend eleifend.</p>
+        </div>
+        <div class="row">
+            <p class="center text">Phasellus ut arcu urna. Donec sit amet quam id tortor tempus faucibus eget et eros. Ut sollicitudin rutrum nisl, consectetur rutrum mi porta a. Curabitur pharetra nisl purus, at ornare diam viverra ut. Morbi vitae iaculis odio, non egestas ante. Donec vel dignissim risus, ac rutrum quam. Sed id lacus sed diam dictum ullamcorper. Phasellus vel nulla malesuada elit venenatis malesuada quis quis arcu.</p>
+        </div>
+        </div>
+    </section>
+    {#% for challenge in featured_challenges %}
         <a href="{{ path('challenge', {'slug': challenge.slug}) }}">
             <span>{{ challenge.name }}</span>
             <span>&euro; {{ challenge.prize }}</span>
         </a>
-    {% endfor %}
+    {% endfor %#}
 
 {% endblock body %}
