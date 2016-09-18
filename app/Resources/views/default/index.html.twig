@@ -9,11 +9,11 @@
         <div class="row">
             <div class="stat large-4 columns">
                 <div class="stat-name">Paid out</div>
-                <div class="stat-value">&euro; 125.000,00</div>
+                <div class="stat-value">{{ 125000|currency }}</div>
             </div>
             <div class="stat large-4 columns">
                 <div class="stat-name">Earnings pool</div>
-                <div class="stat-value">&euro; 30.000,00</div>
+                <div class="stat-value">{{ 30000|currency }}</div>
             </div>
             <div class="stat large-4 columns">
                 <div class="stat-name">Next challenge</div>
@@ -27,7 +27,7 @@
         </header>
         <div class="row">
 
-            {% for challenge in featured_challenges %}
+            {% for challenge in newest_challenges %}
                 {% include 'challenge/blocks/featured_challenge.html.twig' with {'challenge': challenge} %}
             {% endfor %}
 

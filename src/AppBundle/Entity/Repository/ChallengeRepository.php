@@ -35,6 +35,29 @@ class ChallengeRepository extends EntityRepository
     }
 
     /**
+     * Finds challenges started recently
+     * @return array
+     */
+    public function findNewestChallenges(): array
+    {
+        $currentDate = new \DateTime();
+        $queryBuilder = $this->getEntityManager()->createQueryBuilder();
+
+        return $queryBuilder
+            ->select('challenge')
+            ->from('AppBundle:Challenge', 'challenge')
+            ->where($queryBuilder->expr()->lt('challenge.startDate', ':current'))
+            ->andWhere($queryBuilder->expr()->gte('challenge.finishDate', ':current')) # challenge is still running
+            ->setParameters([
+                'current' => $currentDate
+            ])
+            ->orderBy('challenge.startDate', 'DESC')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
      * Finds featured challenges for index page
      *
      * @return array
