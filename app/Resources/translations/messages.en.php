@@ -1,7 +1,10 @@
 <?php
 return [
     'challenge' => [
-        'new' => "New challenges"
+        'new' => "New challenges",
+        'flashes' => [
+            'joined' => "Successfully joined challenge."
+        ]
     ],
 
     'years' => "{0} years|{1} year|[2,Inf[ years",
