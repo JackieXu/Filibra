@@ -1,16 +1,18 @@
-<div class="challenge large-4 columns">
-    <a href="{{ path('challenge', {'slug': challenge.slug}) }}">
-        <h3 class="challenge-name"><span class="hash">#</span>{{ challenge.name }}</h3>
-    </a>
-    <img class="challenge-thumbnail">
-    <div class="challenge-details">
-        <div class="challenge-detail detail row">
-            <div class="detail-name large-6 columns">Earnings pool</div>
-            <div class="detail-name large-6 columns">{{ challenge.prize|currency }}</div>
-        </div>
-        <div class="challenge-detail detail row">
-            <div class="detail-name large-6 columns">Time left</div>
-            <div class="detail-name large-6 columns">{{ challenge_datediff(challenge) }}</div>
+<div class="large-4 columns">
+    <div class="challenge">
+        <a href="{{ path('challenge', {'slug': challenge.slug}) }}">
+            <h3 class="challenge-name"><span class="hash">#</span>{{ challenge.name }}</h3>
+        </a>
+        <img class="challenge-thumbnail">
+        <div class="challenge-details">
+            <div class="challenge-detail detail row">
+                <div class="detail-name large-6 columns">Earnings pool</div>
+                <div class="detail-name large-6 columns">{{ challenge.prize|currency }}</div>
+            </div>
+            <div class="challenge-detail detail row">
+                <div class="detail-name large-6 columns">Time left</div>
+                <div class="detail-name large-6 columns">{{ challenge_datediff(challenge) }}</div>
+            </div>
         </div>
     </div>
 </div>
