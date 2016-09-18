@@ -6,9 +6,17 @@ use AppBundle\Entity\Challenge;
 use Twig_Extension;
 use Twig_SimpleFunction;
 use Twig_SimpleFilter;
+use Symfony\Component\Translation\Translator;
 
 class ChallengeExtension extends Twig_Extension
 {
+
+    private $translator;
+
+    public function __construct(Translator $translator)
+    {
+        $this->translator = $translator;
+    }
 
     public function getFunctions(): array
     {
@@ -30,7 +38,7 @@ class ChallengeExtension extends Twig_Extension
         $diff = $challenge->getFinishDate()->diff($now);
 
         $date_order = ['y', 'm', 'd', 'h', 'i', 's'];
-        $date_strings = ['year', 'month', 'day', 'hour', 'minute', 'second'];
+        $i18n_keys = ['years', 'months', 'days', 'hours', 'minutes', 'seconds'];
 
 
         $i = 0;
@@ -41,7 +49,7 @@ class ChallengeExtension extends Twig_Extension
 
         $d = $diff->{$date_order[$i]};
 
-        return $d . " " . $date_strings[$i] . ($d > 1 ? "s" : "");
+        return $d . " " . $this->translator->transChoice($i18n_keys[$i], $d);
     }
 
     public function currencyFilter(int $amount): string
