@@ -18,6 +18,8 @@
                 <div class="top-bar-left">
                     <ul class="menu">
                         <li class="menu-text"><a href="{{ path('index') }}">Filibra</a></li>
+                        <li class="menu-text"><a href="{{ path('index') }}">Home</a></li>
+                        <li class="menu-text"><a href="{{ path('challenges') }}">Challenges</a></li>
                     </ul>
                 </div>
                 {# TODO: Check to move this into a partial. #}
@@ -28,10 +30,10 @@
                             <a class="button" href="{{ path('app_authentication_logouthandler') }}">Logout</a>
                         </li>
                     {% else %}
-                        <li>
+                        <li class="login-option">
                             <a class="button" href="{{ facebook_login_url }}">Login with Facebook</a>
                         </li>
-                        <li>
+                        <li class="login-option">
                             <a class="button" href="{{ instagram_login_url }}">Login with Instagram</a>
                         </li>
                     {% endif %}

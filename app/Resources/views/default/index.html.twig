@@ -1,16 +1,18 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
-    <section class="text-center">
-        <div class="row">
-            <h1 class="tagline center">
-                <div><span class="tagline-keyword">Join</span> <span class="tagline-text">a challenge</span></div>
-                <div><span class="tagline-keyword">Tag</span> <span class="tagline-text">your posts</span></div>
-                <div><span class="tagline-keyword">Earn</span> <span class="tagline-text">money</span></div>
-            </h1>
-        </div>
-        <div class="row">
-            <a class="button large" href="">Sign up now</a>
+    <section class="hero text-center">
+        <div>
+            <div class="row">
+                <h1 class="tagline center">
+                    <div><span class="tagline-keyword">Join</span> <span class="tagline-text">a challenge</span></div>
+                    <div><span class="tagline-keyword">Tag</span> <span class="tagline-text">your posts</span></div>
+                    <div><span class="tagline-keyword">Earn</span> <span class="tagline-text">money</span></div>
+                </h1>
+            </div>
+            <div class="row">
+                <a class="button large" href="">Sign up now</a>
+            </div>
         </div>
     </section>
     <section class="stats">
@@ -56,11 +58,4 @@
         </div>
         </div>
     </section>
-    {#% for challenge in featured_challenges %}
-        <a href="{{ path('challenge', {'slug': challenge.slug}) }}">
-            <span>{{ challenge.name }}</span>
-            <span>&euro; {{ challenge.prize }}</span>
-        </a>
-    {% endfor %#}
-
 {% endblock body %}
