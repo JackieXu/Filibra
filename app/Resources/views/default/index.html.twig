@@ -9,11 +9,11 @@
         <div class="row">
             <div class="stat large-4 columns">
                 <div class="stat-name">Paid out</div>
-                <div class="stat-value">&euro; 125.000,00</div>
+                <div class="stat-value">{{ 125000|currency }}</div>
             </div>
             <div class="stat large-4 columns">
                 <div class="stat-name">Earnings pool</div>
-                <div class="stat-value">&euro; 30.000,00</div>
+                <div class="stat-value">{{ 30000|currency }}</div>
             </div>
             <div class="stat large-4 columns">
                 <div class="stat-name">Next challenge</div>
@@ -26,48 +26,11 @@
             <h2 class="section-header">New challenges</h2>
         </header>
         <div class="row">
-            <div class="challenge large-4 columns">
-                <h3 class="challenge-name"><span class="hash">#</span>ChallengeName</h3>
-                <img class="challenge-thumbnail">
-                <div class="challenge-details">
-                    <div class="challenge-detail detail row">
-                        <div class="detail-name large-6 columns">Earnings pool</div>
-                        <div class="detail-name large-6 columns">&euro; 10.000,00</div>
-                    </div>
-                    <div class="challenge-detail detail row">
-                        <div class="detail-name large-6 columns">Time left</div>
-                        <div class="detail-name large-6 columns">12 days</div>
-                    </div>
-                </div>
-            </div>
-            <div class="challenge large-4 columns">
-                <h3 class="challenge-name"><span class="hash">#</span>ChallengeName</h3>
-                <img class="challenge-thumbnail">
-                <div class="challenge-details">
-                    <div class="challenge-detail detail row">
-                        <div class="detail-name large-6 columns">Earnings pool</div>
-                        <div class="detail-name large-6 columns">&euro; 10.000,00</div>
-                    </div>
-                    <div class="challenge-detail detail row">
-                        <div class="detail-name large-6 columns">Time left</div>
-                        <div class="detail-name large-6 columns">12 days</div>
-                    </div>
-                </div>
-            </div>
-            <div class="challenge large-4 columns">
-                <h3 class="challenge-name"><span class="hash">#</span>ChallengeName</h3>
-                <img class="challenge-thumbnail">
-                <div class="challenge-details">
-                    <div class="challenge-detail detail row">
-                        <div class="detail-name large-6 columns">Earnings pool</div>
-                        <div class="detail-name large-6 columns">&euro; 10.000,00</div>
-                    </div>
-                    <div class="challenge-detail detail row">
-                        <div class="detail-name large-6 columns">Time left</div>
-                        <div class="detail-name large-6 columns">12 days</div>
-                    </div>
-                </div>
-            </div>
+
+            {% for challenge in newest_challenges %}
+                {% include 'challenge/blocks/featured_challenge.html.twig' with {'challenge': challenge} %}
+            {% endfor %}
+
         </div>
     </section>
     <section class="section how-it-works">

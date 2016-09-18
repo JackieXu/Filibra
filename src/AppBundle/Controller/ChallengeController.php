@@ -28,7 +28,7 @@ class ChallengeController extends BaseController
         $challengeRepository = $this->getDoctrine()->getManager()->getRepository('AppBundle:Challenge');
         $challenges = $challengeRepository->findAllActiveChallenges();
 
-        return $this->render('challenge/index.html.twig', [
+        return $this->render(':challenge:index.html.twig', [
             'challenges' => $challenges
         ]);
     }
@@ -82,7 +82,10 @@ class ChallengeController extends BaseController
         $challengeRepository = $this->getDoctrine()->getManager()->getRepository('AppBundle:Challenge');
         $challenge = $challengeRepository->findOneBySlug($slug);
 
-        return $this->render('challenge/challenge.html.twig', [
+        if (!$challenge){
+            return $this->render(':challenge:not_found.html.twig');
+        }
+        return $this->render(':challenge:challenge.html.twig', [
             'challenge' => $challenge,
         ]);
     }
@@ -96,6 +99,7 @@ class ChallengeController extends BaseController
      */
     public function joinChallengeAction($slug): Response
     {
-        return null;
+        $challengeRepository = $this->getDoctrine()->getManager()->getRepository('AppBundle:Challenge');
+        $challenge = $challengeRepository->findOneBySlug($slug);
     }
 }
