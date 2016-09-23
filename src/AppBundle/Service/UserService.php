@@ -59,7 +59,7 @@ class UserService
         $user->setAvatarURL($graphUser->getPicture()->getUrl());
         $user->setFacebookId($graphUser->getId());
         $user->setFacebookAccessToken($accessToken->getValue());
-        $user->setRoles('USER_ROLE');
+        $user->setRoles('ROLE_USER');
 
         $this->entityManager->persist($user);
         $this->entityManager->flush();
@@ -91,7 +91,7 @@ class UserService
         $user->setInstagramId($instagramData['user']['id']);
         $user->setInstagramUsername($instagramData['user']['username']);
         $user->setInstagramAccessToken($instagramData['access_token']);
-        $user->setRoles('USER_ROLE');
+        $user->setRoles('ROLE_USER');
 
         $this->entityManager->persist($user);
         $this->entityManager->flush();
