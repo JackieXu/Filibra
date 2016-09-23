@@ -1,0 +1,25 @@
+.page-footer {
+  padding-top: 5.0rem;
+  padding-bottom: 5.0rem;
+
+  line-height: calc($baseline * 6);
+
+  .copy {
+
+    font-size: 1.4rem;
+    text-align: right;
+  }
+
+  .footer-heading {
+    color: #000;
+    font-size: calc($baseline * 4);
+  }
+
+  .footer-link {
+    display: block;
+
+    padding-top: calc($baseline * 2);
+
+    color: #6C6C6C;
+  }
+}

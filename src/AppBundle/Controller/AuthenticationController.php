@@ -16,7 +16,7 @@ use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
  *
  * @package AppBundle\Controller
  */
-class AuthenticationController extends Controller
+class AuthenticationController extends BaseController
 {
     /**
      * Handles Facebook login redirect.

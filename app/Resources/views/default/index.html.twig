@@ -1,15 +1,61 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
-    <h1>Hier komt nog iets.</h1>
-    <a href="{{ path('challenges') }}">All challenges</a>
+    <section class="hero text-center">
+        <div>
+            <div class="row">
+                <h1 class="tagline center">
+                    <div><span class="tagline-keyword">Join</span> <span class="tagline-text">a challenge</span></div>
+                    <div><span class="tagline-keyword">Tag</span> <span class="tagline-text">your posts</span></div>
+                    <div><span class="tagline-keyword">Earn</span> <span class="tagline-text">money</span></div>
+                </h1>
+            </div>
+            <div class="row">
+                <a class="button large" href="">Sign up now</a>
+            </div>
+        </div>
+    </section>
+    <section class="stats">
+        <div class="row">
+            <div class="stat large-4 columns">
+                <div class="stat-name">Paid out</div>
+                <div class="stat-value">{{ 125000|currency }}</div>
+            </div>
+            <div class="stat large-4 columns">
+                <div class="stat-name">Earnings pool</div>
+                <div class="stat-value">{{ 30000|currency }}</div>
+            </div>
+            <div class="stat large-4 columns">
+                <div class="stat-name">Next challenge</div>
+                <div class="stat-value">4 days</div>
+            </div>
+        </div>
+    </section>
+    <section class="section featured-challenges">
+        <header class="row section-heading">
+            <h2 class="section-header">{% trans %}challenge.new{% endtrans %}</h2>
+        </header>
+        <div class="row">
 
+            {% for challenge in newest_challenges %}
+                {% include 'challenge/blocks/featured_challenge.html.twig' with {'challenge': challenge} %}
+            {% endfor %}
 
-    {% for challenge in featured_challenges %}
-        <a href="{{ path('challenge', {'slug': challenge.slug}) }}">
-            <span>{{ challenge.name }}</span>
-            <span>&euro; {{ challenge.prize }}</span>
-        </a>
-    {% endfor %}
-
+        </div>
+        <div class="row text-center">
+            <a class="button large" href="{{ path('challenges') }}">View all challenges</a>
+        </div>
+    </section>
+    <section class="section how-it-works">
+        <heading class="row section-heading">
+            <h2 class="section-header">How it works</h2>
+        </heading>
+        <div class="row">
+            <p class="center text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed nibh nulla. Duis elementum faucibus facilisis. Integer aliquet sodales ultricies. Maecenas laoreet mauris nisi, quis scelerisque tortor molestie id. Curabitur vel velit quis enim elementum vulputate. Vestibulum sed cursus nulla. Morbi vulputate nisl sit amet augue ultricies porttitor. Proin eu vestibulum justo. Nunc tempus purus nec nisl eleifend eleifend.</p>
+        </div>
+        <div class="row">
+            <p class="center text">Phasellus ut arcu urna. Donec sit amet quam id tortor tempus faucibus eget et eros. Ut sollicitudin rutrum nisl, consectetur rutrum mi porta a. Curabitur pharetra nisl purus, at ornare diam viverra ut. Morbi vitae iaculis odio, non egestas ante. Donec vel dignissim risus, ac rutrum quam. Sed id lacus sed diam dictum ullamcorper. Phasellus vel nulla malesuada elit venenatis malesuada quis quis arcu.</p>
+        </div>
+        </div>
+    </section>
 {% endblock body %}

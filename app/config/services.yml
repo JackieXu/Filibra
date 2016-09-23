@@ -16,3 +16,9 @@ services:
     user.service:
         class: AppBundle\Service\UserService
         arguments: ["@doctrine.orm.entity_manager"]
+    app.twig_extension:
+        class: AppBundle\Twig\ChallengeExtension
+        public: false
+        arguments: ["@translator.default"]
+        tags:
+            - { name: twig.extension }

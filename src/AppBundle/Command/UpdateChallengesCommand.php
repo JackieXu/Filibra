@@ -56,9 +56,15 @@ class UpdateChallengesCommand extends ContainerAwareCommand
         foreach ($challenge->getParticipants() as $participant) {
             $entries = $this->instagramService->getUserEntriesForChallenge($participant->getUser(), $challenge, $scorer);
 
+            // total score for all entries for this user
+            $score = 0;
+
             foreach ($entries as $e){
+                $score += $e->getScore();
                 $this->entityManager->persist($e);
             }
+
+            $participant->setScore($score);
 
             $this->output->writeln(sprintf("%d items for user %s in challenge %s.", count($entries),
                 $participant->getUser()->getName(), $challenge->getName()));

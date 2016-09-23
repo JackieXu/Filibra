@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Challenge;
+use AppBundle\Entity\ChallengeUser;
 use AppBundle\Form\Type\ChallengeType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -28,7 +29,7 @@ class ChallengeController extends BaseController
         $challengeRepository = $this->getDoctrine()->getManager()->getRepository('AppBundle:Challenge');
         $challenges = $challengeRepository->findAllActiveChallenges();
 
-        return $this->render('challenge/index.html.twig', [
+        return $this->render(':challenge:index.html.twig', [
             'challenges' => $challenges
         ]);
     }
@@ -36,7 +37,7 @@ class ChallengeController extends BaseController
     /**
      * Displays challenge creation page.
      *
-     * @Route("/challenges/new")
+     * @Route("/challenges/new", name="new_challenge")
      *
      * TODO: Different action if user isn't an admin. Need proper pages for this.
      * TODO: Handle dates properly for new challenges.
@@ -82,7 +83,10 @@ class ChallengeController extends BaseController
         $challengeRepository = $this->getDoctrine()->getManager()->getRepository('AppBundle:Challenge');
         $challenge = $challengeRepository->findOneBySlug($slug);
 
-        return $this->render('challenge/challenge.html.twig', [
+        if (!$challenge){
+            return $this->render(':challenge:not_found.html.twig');
+        }
+        return $this->render(':challenge:challenge.html.twig', [
             'challenge' => $challenge,
         ]);
     }
@@ -96,6 +100,25 @@ class ChallengeController extends BaseController
      */
     public function joinChallengeAction($slug): Response
     {
-        return null;
+        $challengeRepository = $this->getDoctrine()->getManager()->getRepository('AppBundle:Challenge');
+        $challenge = $challengeRepository->findOneBySlug($slug);
+
+        if (!$challenge){
+            return $this->render(':challenge:not_found.html.twig');
+        }
+
+        #TODO: Check whether user is already participating in challenge
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $challengeUser = new ChallengeUser();
+        $challengeUser->setChallenge($challenge);
+        $challengeUser->setUser($this->getUser());
+
+        $entityManager->persist($challengeUser);
+        $entityManager->flush();
+
+        $this->addFlash('info', $this->get('translator')->trans('challenge.flashes.joined'));
+
+        return $this->redirectToRoute('challenge', ['slug' => $challenge->getSlug()]);
     }
 }
