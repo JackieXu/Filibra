@@ -24,13 +24,12 @@ class UserController extends BaseController
     public function overviewPageAction(): Response
     {
         if (!$this->isGranted('ROLE_USER')) {
-
             $this->addFlash('error', 'You need to be logged in to view this page.');
 
             return $this->render(':default:index.html.twig')->setStatusCode(403);
         }
 
-        return $this->render(':default:index.html.twig');
+        return $this->render(':user:overview.html.twig');
     }
 
     /**
