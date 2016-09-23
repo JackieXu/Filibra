@@ -2,8 +2,9 @@
 namespace AppBundle\Command;
 
 use AppBundle\Entity\Challenge;
-use AppBundle\Entity\Entry;
 use AppBundle\Helper\InstagramScoring;
+use AppBundle\Service\InstagramService;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
@@ -17,8 +18,14 @@ class UpdateChallengesCommand extends ContainerAwareCommand
      */
     private $output;
 
+    /**
+     * @var InstagramService
+     */
     private $instagramService;
 
+    /**
+     * @var ObjectManager
+     */
     private $entityManager;
 
     protected function configure()
@@ -32,7 +39,7 @@ class UpdateChallengesCommand extends ContainerAwareCommand
     {
         $this->output = $output;
         $this->instagramService = $this->getContainer()->get('instagram.service');
-        $this->entityManager = $this->getContainer()->get('doctrine')->getEntityManager();
+        $this->entityManager = $this->getContainer()->get('doctrine')->getManager();
 
         $this->output->writeln("Updating active challenges...");
 

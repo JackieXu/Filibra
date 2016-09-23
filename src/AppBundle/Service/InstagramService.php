@@ -8,7 +8,6 @@ use AppBundle\Entity\Entry;
 use AppBundle\Entity\User;
 use AppBundle\Helper\EntryFilter;
 use AppBundle\Helper\InstagramScoring;
-use AppBundle\Helper\ScoringInterface;
 
 
 /**
@@ -96,9 +95,10 @@ class InstagramService
      *
      * @param User $user
      * @param Challenge $challenge
-     * @return array
+     * @param InstagramScoring $scoring
+     * @return Entry[]
      */
-    public function getUserEntriesForChallenge(User $user, Challenge $challenge, InstagramScoring $scoring)
+    public function getUserEntriesForChallenge(User $user, Challenge $challenge, InstagramScoring $scoring): array
     {
         $media = $this->getUserMediaForChallenge($user, $challenge);
 
@@ -133,8 +133,11 @@ class InstagramService
         do {
             // retrieve data from Instagram api
             $recentMediaUrl = $this->getRecentMediaURL($user);
-            $data = $this->get($recentMediaUrl, ['access_token' => $user->getInstagramAccessToken(),
-                'count' => 20, 'max_id' => $nextMaxId]);
+            $data = $this->get($recentMediaUrl, [
+                'access_token' => $user->getInstagramAccessToken(),
+                'count' => 20,
+                'max_id' => $nextMaxId
+            ]);
 
             // reset nextMaxId so that any errors will not cause an infinite loop
             $nextMaxId = null;
