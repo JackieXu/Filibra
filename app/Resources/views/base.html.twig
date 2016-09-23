@@ -20,6 +20,9 @@
                         <li class="menu-text"><a href="{{ path('index') }}">Filibra</a></li>
                         <li class="menu-text{% if app.request.attributes.get('_route') == 'index' %} active{% endif %}"><a href="{{ path('index') }}">Home</a></li>
                         <li class="menu-text{% if app.request.attributes.get('_route') == 'challenges' %} active{% endif %}"><a href="{{ path('challenges') }}">Challenges</a></li>
+                        {% if app.user %}
+                        <li class="menu-text{% if app.request.attributes.get('_route') == 'profile' %} active{% endif %}"><a href="{{ path('profile') }}">Profile</a></li>
+                        {% endif %}
                     </ul>
                 </div>
                 {# TODO: Check to move this into a partial. #}

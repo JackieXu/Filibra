@@ -35,7 +35,7 @@ class UserController extends BaseController
     /**
      * Displays user's profile page.
      *
-     * @Route("/profile")
+     * @Route("/profile", name="profile")
      *
      * @return Response
      */
