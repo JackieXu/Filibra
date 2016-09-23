@@ -2,7 +2,14 @@
 
 {% block body %}
     <h1>{{ challenge.name }}</h1>
+    {% if app.user %}
+    {% if app.user in challenge.participants %}
     <a href="{{ path('join_challenge', {'slug': challenge.slug}) }}">Join challenge</a>
+    {% else %}
+    {# TODO: Implement ability to leave challenge.#}
+    <a href="#">Leave challenge</a>
+    {% endif %}
+    {% endif %}
 
     {% for participant in challenge.participants %}
         <div>{{ loop.index }} - {{ participant.user.name }} : {{ participant.score }}</div>
