@@ -42,10 +42,9 @@ class UserController extends BaseController
     public function profilePageAction(): Response
     {
         if (!$this->isGranted('ROLE_USER')) {
-
             $this->addFlash('error', 'You need to be logged in to view this page.');
 
-            return $this->render(':default:index.html.twig')->setStatusCode(403);
+            return $this->redirectToRoute('index');
         }
 
         return $this->render(':user:profile.html.twig', []);
