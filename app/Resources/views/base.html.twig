@@ -13,37 +13,7 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        <div class="top-bar">
-            <div class="row">
-                <div class="top-bar-left">
-                    <ul class="menu">
-                        <li class="menu-text"><a href="{{ path('index_page') }}">Filibra</a></li>
-                        <li class="menu-text{% if app.request.attributes.get('_route') == 'index_page' %} active{% endif %}"><a href="{{ path('index_page') }}">Home</a></li>
-                        <li class="menu-text{% if app.request.attributes.get('_route') == 'challenge_list_page' %} active{% endif %}"><a href="{{ path('challenge_list_page') }}">Challenges</a></li>
-                        {% if app.user %}
-                        <li class="menu-text{% if app.request.attributes.get('_route') == 'profile_page' %} active{% endif %}"><a href="{{ path('profile_page') }}">Profile</a></li>
-                        {% endif %}
-                    </ul>
-                </div>
-                {# TODO: Check to move this into a partial. #}
-                <div class="top-bar-right">
-                    <ul class="menu">
-                    {% if app.user %}
-                        <li>
-                            <a class="button" href="{{ path('logout_action') }}">Logout</a>
-                        </li>
-                    {% else %}
-                        <li class="login-option">
-                            <a class="button" href="{{ facebook_login_url }}">Login with Facebook</a>
-                        </li>
-                        <li class="login-option">
-                            <a class="button" href="{{ instagram_login_url }}">Login with Instagram</a>
-                        </li>
-                    {% endif %}
-                    </ul>
-                </div>
-            </div>
-        </div>
+        {% include "header.html.twig" %}
         {% for message in app.session.flashBag.get('info') %}
         <div class="callout success" data-closable>
             <span>{{ message }}</span>
@@ -51,29 +21,13 @@
         </div>
         {% endfor %}
         {% for message in app.session.flashBag.get('error') %}
-            <div class="callout alert" data-closable>
-                <span>{{ message }}</span>
-                <a class="close-button" href="#">&times;</a>
-            </div>
+        <div class="callout alert" data-closable>
+            <span>{{ message }}</span>
+            <a class="close-button" href="#">&times;</a>
+        </div>
         {% endfor %}
         {% block body %}{% endblock %}
-        <footer class="page-footer">
-            <div class="row">
-                <div class="footer-section contact medium-3 large-3 columns">
-                    <h2 class="footer-heading">Get in touch</h2>
-                    <a href="" class="footer-link">Facebook</a>
-                    <a href="" class="footer-link">Instagram</a>
-                </div>
-                <div class="footer-section legal medium-3 large-3 columns">
-                    <h2 class="footer-heading">Legal</h2>
-                    <a href="{{ path('terms_of_service_page') }}" class="footer-link">Terms of service</a>
-                    <a href="{{ path('privacy_policy_page') }}" class="footer-link">Privacy policy</a>
-                </div>
-                <div class="footer-section copy medium-6 large-6 columns">
-                    <small class="copy-text">Copyright 2016 - Present <a class="copy-link" href="{{ path('index_page') }}">Insert Company Name</a></small>
-                </div>
-            </div>
-        </footer>
+        {% include "footer.html.twig" %}
         <!-- This is where the magic happens -->
         <script src="{{ asset('js/jquery.js') }}"></script>
         <script src="{{ asset('js/foundation.min.js') }}"></script>
