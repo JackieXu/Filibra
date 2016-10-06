@@ -1,5 +1,6 @@
 {
     "name": "jackiexu/filibra",
+    "description": "Analytics platform",
     "license": "proprietary",
     "type": "project",
     "autoload": {
