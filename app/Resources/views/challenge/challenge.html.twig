@@ -3,11 +3,9 @@
 {% block body %}
     <h1>{{ challenge.name }}</h1>
     {% if app.user %}
-    {% if app.user in challenge.participants %}
-    <a href="{{ path('join_challenge_action', {'slug': challenge.slug}) }}">Join challenge</a>
-    {% else %}
-    <a href="#">Leave challenge</a>
-    {% endif %}
+    <form method="POST" action="{{ path('join_challenge_action', {'slug': challenge.slug}) }}">
+        <input class="button" type="submit" value="Join challenge" />
+    </form>
     {% endif %}
 
     {% for participant in challenge.participants %}

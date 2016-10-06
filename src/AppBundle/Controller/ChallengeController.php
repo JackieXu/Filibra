@@ -103,7 +103,7 @@ class ChallengeController extends BaseController
         $challenge = $challengeRepository->findOneBySlug($slug);
 
         if (!$challenge) {
-            return $this->challengeNotFound();
+            throw $this->createNotFoundException();
         }
 
         return $this->render(':challenge:challenge.html.twig', [
@@ -115,7 +115,7 @@ class ChallengeController extends BaseController
      * Join challenge
      *
      * @Route("/challenge/{slug}/join", name="join_challenge_action", requirements={"slug" = "[a-zA-Z0-9\-\_]+"})
-     * @Method("GET")
+     * @Method("POST")
      *
      * @param string $slug
      * @return Response
@@ -126,7 +126,7 @@ class ChallengeController extends BaseController
         $challenge = $challengeRepository->findOneBySlug($slug);
 
         if (!$challenge) {
-            return $this->challengeNotFound();
+            throw $this->createNotFoundException();
         }
 
         if (!$this->isGranted('ROLE_USER')) {
@@ -153,18 +153,5 @@ class ChallengeController extends BaseController
         $this->addFlash('info', $this->get('translator')->trans('challenge.flashes.joined'));
 
         return $this->redirectToRoute('challenge_page', ['slug' => $challenge->getSlug()]);
-    }
-
-    /**
-     * Returns challenge not found response with 404 status code.
-     *
-     * @return Response
-     */
-    private function challengeNotFound(): Response
-    {
-        return new Response(
-            $this->renderView(':challenge:not_found.html.twig'),
-            404
-        );
     }
 }
