@@ -39,7 +39,7 @@ class BaseController extends Controller
     {
         $facebookLoginURL = $this->get('facebook.service')->getLoginURL(
             $this->generateUrl(
-                'app_authentication_facebookloginhandler',
+                'facebook_login_action',
                 [],
                 UrlGeneratorInterface::ABSOLUTE_URL
             )
@@ -47,7 +47,7 @@ class BaseController extends Controller
 
         $instagramLoginURL = $this->get('instagram.service')->getLoginURL(
             $this->generateUrl(
-                'app_authentication_instagramloginhandler',
+                'instagram_login_action',
                 [],
                 UrlGeneratorInterface::ABSOLUTE_URL
             )

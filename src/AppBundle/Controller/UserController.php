@@ -17,7 +17,7 @@ class UserController extends BaseController
     /**
      * Displays user's overview page.
      *
-     * @Route("/overview", name="overview")
+     * @Route("/overview", name="overview_page")
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -35,7 +35,7 @@ class UserController extends BaseController
     /**
      * Displays user's profile page.
      *
-     * @Route("/profile", name="profile")
+     * @Route("/profile", name="profile_page")
      *
      * @return Response
      */

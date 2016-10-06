@@ -12,7 +12,7 @@ class DefaultController extends BaseController
     /**
      * Displays home page.
      *
-     * @Route("/", name="index")
+     * @Route("/", name="index_page")
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -31,7 +31,7 @@ class DefaultController extends BaseController
     /**
      * Displays about page.
      *
-     * @Route("/about")
+     * @Route("/about", name="about_page")
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -43,7 +43,7 @@ class DefaultController extends BaseController
     /**
      * Displays contact page.
      *
-     * @Route("/contact", name="contact")
+     * @Route("/contact", name="contact_page")
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */

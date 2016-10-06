@@ -21,7 +21,7 @@ class AuthenticationController extends BaseController
     /**
      * Handles Facebook login redirect.
      *
-     * @Route("/login/facebook")
+     * @Route("/login/facebook", name="facebook_login_action")
      *
      * @param Request $request
      * @return Response
@@ -38,7 +38,7 @@ class AuthenticationController extends BaseController
 
                 $this->addFlash('info', 'Succesfully connected Facebook account!');
 
-                return $this->redirectToRoute('profile');
+                return $this->redirectToRoute('profile_page');
             }
 
             $user = $this->get('user.service')->loginWithFacebook($accessToken, $graphUser);
@@ -51,18 +51,18 @@ class AuthenticationController extends BaseController
 
             $this->addFlash('info', 'Succesfully logged in');
 
-            return $this->redirectToRoute('overview');
+            return $this->redirectToRoute('overview_page');
         }
 
         $this->addFlash('error', 'Something went wrong via Facebook. Try again later.');
 
-        return $this->redirectToRoute('index');
+        return $this->redirectToRoute('index_page');
     }
 
     /**
      * Handles Instagram login redirect.
      *
-     * @Route("/login/instagram")
+     * @Route("/login/instagram", name="instagram_login_action")
      *
      * @param Request $request
      * @return Response
@@ -70,12 +70,12 @@ class AuthenticationController extends BaseController
     public function instagramLoginHandler(Request $request): Response
     {
         if ($request->query->has('error')) {
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('index_page');
         }
 
         $instagramData = $this->get('instagram.service')->login(
             $request->query->get('code'),
-            $this->generateUrl('app_authentication_instagramloginhandler', [], UrlGeneratorInterface::ABSOLUTE_URL)
+            $this->generateUrl('instagram_login_action', [], UrlGeneratorInterface::ABSOLUTE_URL)
         );
 
         if ($instagramData) {
@@ -84,7 +84,7 @@ class AuthenticationController extends BaseController
 
                 $this->addFlash('info', 'Succesfully connected Instagram account!');
 
-                return $this->redirectToRoute('profile');
+                return $this->redirectToRoute('profile_page');
             }
 
             $user = $this->get('user.service')->loginWithInstagram($instagramData);
@@ -97,18 +97,18 @@ class AuthenticationController extends BaseController
 
             $this->addFlash('info', 'Succesfully logged in');
 
-            return $this->redirectToRoute('overview');
+            return $this->redirectToRoute('overview_page');
         }
 
         $this->addFlash('error', 'Something went wrong via Instagram. Try again later.');
 
-        return $this->redirectToRoute('index');
+        return $this->redirectToRoute('index_page');
     }
 
     /**
      * Handles log out action.
      *
-     * @Route("/logout")
+     * @Route("/logout", name="logout_action")
      *
      * @param Request $request
      * @return Response
@@ -124,6 +124,6 @@ class AuthenticationController extends BaseController
             $this->addFlash('error', 'Not logged in; unable to log out.');
         }
 
-        return $this->redirectToRoute('index');
+        return $this->redirectToRoute('index_page');
     }
 }

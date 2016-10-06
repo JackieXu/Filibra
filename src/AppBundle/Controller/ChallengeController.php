@@ -20,7 +20,7 @@ class ChallengeController extends BaseController
     /**
      * Displays list of challenges.
      *
-     * @Route("/challenges", name="challenges")
+     * @Route("/challenges", name="challenge_list_page")
      *
      * @return Response
      */
@@ -37,7 +37,7 @@ class ChallengeController extends BaseController
     /**
      * Displays challenge creation page.
      *
-     * @Route("/challenges/new", name="new_challenge")
+     * @Route("/challenges/new", name="new_challenge_page")
      *
      * TODO: Different action if user isn't an admin. Need proper pages for this.
      * TODO: Handle dates properly for new challenges.
@@ -74,7 +74,7 @@ class ChallengeController extends BaseController
     /**
      * View single challenge page
      *
-     * @Route("/challenge/{slug}", name="challenge", requirements={"slug" = "[a-zA-Z0-9\-\_]+"})
+     * @Route("/challenge/{slug}", name="challenge_page", requirements={"slug" = "[a-zA-Z0-9\-\_]+"})
      *
      * @param string $slug
      * @return Response
@@ -96,7 +96,7 @@ class ChallengeController extends BaseController
     /**
      * Join challenge
      *
-     * @Route("/challenge/{slug}/join", name="join_challenge", requirements={"slug" = "[a-zA-Z0-9\-\_]+"})
+     * @Route("/challenge/{slug}/join", name="join_challenge_action", requirements={"slug" = "[a-zA-Z0-9\-\_]+"})
      *
      * @param string $slug
      * @return Response

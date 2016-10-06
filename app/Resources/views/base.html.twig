@@ -17,11 +17,11 @@
             <div class="row">
                 <div class="top-bar-left">
                     <ul class="menu">
-                        <li class="menu-text"><a href="{{ path('index') }}">Filibra</a></li>
-                        <li class="menu-text{% if app.request.attributes.get('_route') == 'index' %} active{% endif %}"><a href="{{ path('index') }}">Home</a></li>
-                        <li class="menu-text{% if app.request.attributes.get('_route') == 'challenges' %} active{% endif %}"><a href="{{ path('challenges') }}">Challenges</a></li>
+                        <li class="menu-text"><a href="{{ path('index_page') }}">Filibra</a></li>
+                        <li class="menu-text{% if app.request.attributes.get('_route') == 'index_page' %} active{% endif %}"><a href="{{ path('index_page') }}">Home</a></li>
+                        <li class="menu-text{% if app.request.attributes.get('_route') == 'challenge_list_page' %} active{% endif %}"><a href="{{ path('challenge_list_page') }}">Challenges</a></li>
                         {% if app.user %}
-                        <li class="menu-text{% if app.request.attributes.get('_route') == 'profile' %} active{% endif %}"><a href="{{ path('profile') }}">Profile</a></li>
+                        <li class="menu-text{% if app.request.attributes.get('_route') == 'profile_page' %} active{% endif %}"><a href="{{ path('profile_page') }}">Profile</a></li>
                         {% endif %}
                     </ul>
                 </div>
@@ -30,7 +30,7 @@
                     <ul class="menu">
                     {% if app.user %}
                         <li>
-                            <a class="button" href="{{ path('app_authentication_logouthandler') }}">Logout</a>
+                            <a class="button" href="{{ path('logout_action') }}">Logout</a>
                         </li>
                     {% else %}
                         <li class="login-option">
@@ -70,7 +70,7 @@
                     <a href="" class="footer-link">Privacy policy</a>
                 </div>
                 <div class="footer-section copy medium-6 large-6 columns">
-                    <small class="copy-text">Copyright 2016 - Present <a class="copy-link" href="{{ path('index') }}">Insert Company Name</a></small>
+                    <small class="copy-text">Copyright 2016 - Present <a class="copy-link" href="{{ path('index_page') }}">Insert Company Name</a></small>
                 </div>
             </div>
         </footer>
