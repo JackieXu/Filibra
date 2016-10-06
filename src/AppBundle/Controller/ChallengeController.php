@@ -61,7 +61,7 @@ class ChallengeController extends BaseController
 
             $this->addFlash('info', 'Successfully created new challenge.');
 
-            return $this->redirectToRoute('challenge', [
+            return $this->redirectToRoute('challenge_page', [
                 'slug' => $challenge->getSlug()
             ]);
         }
@@ -113,7 +113,7 @@ class ChallengeController extends BaseController
         if ($this->get('challenge.service')->isUserInChallenge($this->getUser(), $challenge)) {
             $this->addFlash('error', 'Already taking part in this challenge!');
 
-            return $this->redirectToRoute('challenge', [
+            return $this->redirectToRoute('challenge_page', [
                 'slug' => $challenge->getSlug()
             ]);
         }
@@ -129,7 +129,7 @@ class ChallengeController extends BaseController
 
         $this->addFlash('info', $this->get('translator')->trans('challenge.flashes.joined'));
 
-        return $this->redirectToRoute('challenge', ['slug' => $challenge->getSlug()]);
+        return $this->redirectToRoute('challenge_page', ['slug' => $challenge->getSlug()]);
     }
 
     /**
