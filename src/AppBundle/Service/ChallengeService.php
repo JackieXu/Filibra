@@ -2,8 +2,8 @@
 
 
 namespace AppBundle\Service;
+
 use AppBundle\Entity\Challenge;
-use AppBundle\Entity\ChallengeUser;
 use AppBundle\Entity\Repository\ChallengeRepository;
 use AppBundle\Entity\User;
 use Doctrine\Common\Persistence\ObjectRepository;
