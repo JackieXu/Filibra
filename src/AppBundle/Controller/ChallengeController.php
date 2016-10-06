@@ -76,9 +76,10 @@ class ChallengeController extends BaseController
      *
      * @Route("/challenge/{slug}", name="challenge", requirements={"slug" = "[a-zA-Z0-9\-\_]+"})
      *
+     * @param string $slug
      * @return Response
      */
-    public function viewChallengeAction($slug): Response
+    public function viewChallengeAction(string $slug): Response
     {
         $challengeRepository = $this->getDoctrine()->getManager()->getRepository('AppBundle:Challenge');
         $challenge = $challengeRepository->findOneBySlug($slug);
@@ -96,9 +97,10 @@ class ChallengeController extends BaseController
      *
      * @Route("/challenge/{slug}/join", name="join_challenge", requirements={"slug" = "[a-zA-Z0-9\-\_]+"})
      *
+     * @param string $slug
      * @return Response
      */
-    public function joinChallengeAction($slug): Response
+    public function joinChallengeAction(string $slug): Response
     {
         $challengeRepository = $this->getDoctrine()->getManager()->getRepository('AppBundle:Challenge');
         $challenge = $challengeRepository->findOneBySlug($slug);
