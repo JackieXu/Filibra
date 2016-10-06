@@ -4,7 +4,6 @@
 namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -26,7 +25,7 @@ class UserController extends BaseController
         if (!$this->isGranted('ROLE_USER')) {
             $this->addFlash('error', 'You need to be logged in to view this page.');
 
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('index_page');
         }
 
         return $this->render(':user:overview.html.twig');
@@ -44,7 +43,7 @@ class UserController extends BaseController
         if (!$this->isGranted('ROLE_USER')) {
             $this->addFlash('error', 'You need to be logged in to view this page.');
 
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('index_page');
         }
 
         return $this->render(':user:profile.html.twig', []);
