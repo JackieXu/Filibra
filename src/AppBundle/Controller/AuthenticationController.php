@@ -76,7 +76,7 @@ class AuthenticationController extends BaseController
 
                 $this->addFlash('info', 'Succesfully connected Instagram account!');
 
-                return $this->redirectToRoute('app_user_profilepage');
+                return $this->redirectToRoute('profile');
             }
 
             $user = $this->get('user.service')->loginWithInstagram($instagramData);
