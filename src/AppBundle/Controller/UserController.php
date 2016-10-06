@@ -3,6 +3,7 @@
 
 namespace AppBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -17,6 +18,7 @@ class UserController extends BaseController
      * Displays user's overview page.
      *
      * @Route("/overview", name="overview_page")
+     * @Method("GET")
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -33,6 +35,7 @@ class UserController extends BaseController
      * Displays user's profile page.
      *
      * @Route("/profile", name="profile_page")
+     * @Method("GET")
      *
      * @return Response
      */

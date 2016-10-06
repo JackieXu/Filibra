@@ -4,6 +4,7 @@
 namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -21,6 +22,7 @@ class AuthenticationController extends BaseController
      * Handles Facebook login redirect.
      *
      * @Route("/login/facebook", name="facebook_login_action")
+     * @Method("GET")
      *
      * @param Request $request
      * @return Response
@@ -62,6 +64,7 @@ class AuthenticationController extends BaseController
      * Handles Instagram login redirect.
      *
      * @Route("/login/instagram", name="instagram_login_action")
+     * @Method("GET")
      *
      * @param Request $request
      * @return Response
@@ -108,6 +111,7 @@ class AuthenticationController extends BaseController
      * Handles log out action.
      *
      * @Route("/logout", name="logout_action")
+     * @Method("GET")
      *
      * @param Request $request
      * @return Response

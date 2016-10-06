@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -11,6 +12,7 @@ class DefaultController extends BaseController
      * Displays home page.
      *
      * @Route("/", name="index_page")
+     * @Method("GET")
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -28,6 +30,7 @@ class DefaultController extends BaseController
      * Displays about page.
      *
      * @Route("/about", name="about_page")
+     * @Method("GET")
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -40,6 +43,7 @@ class DefaultController extends BaseController
      * Displays contact page.
      *
      * @Route("/contact", name="contact_page")
+     * @Method("GET")
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -52,6 +56,7 @@ class DefaultController extends BaseController
      * Displays terms of service page.
      *
      * @Route("/terms-of-service", name="terms_of_service_page")
+     * @Method("GET")
      *
      * @return Response
      */
@@ -64,6 +69,7 @@ class DefaultController extends BaseController
      * Displays privacy policy page.
      *
      * @Route("/privacy-policy", name="privacy_policy_page")
+     * @Method("GET")
      *
      * @return Response
      */

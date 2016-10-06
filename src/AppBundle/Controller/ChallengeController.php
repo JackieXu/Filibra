@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Challenge;
 use AppBundle\Entity\ChallengeUser;
 use AppBundle\Form\Type\ChallengeType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,6 +21,7 @@ class ChallengeController extends BaseController
      * Displays list of challenges.
      *
      * @Route("/challenges", name="challenge_list_page")
+     * @Method("GET")
      *
      * @return Response
      */
@@ -37,6 +39,7 @@ class ChallengeController extends BaseController
      * Displays challenge creation page.
      *
      * @Route("/challenges/new", name="new_challenge_page")
+     * @Method({"GET", "POST"})
      *
      * @param Request $request
      * @return Response
@@ -71,6 +74,7 @@ class ChallengeController extends BaseController
      * View single challenge page
      *
      * @Route("/challenge/{slug}", name="challenge_page", requirements={"slug" = "[a-zA-Z0-9\-\_]+"})
+     * @Method("GET")
      *
      * @param string $slug
      * @return Response
@@ -93,6 +97,7 @@ class ChallengeController extends BaseController
      * Join challenge
      *
      * @Route("/challenge/{slug}/join", name="join_challenge_action", requirements={"slug" = "[a-zA-Z0-9\-\_]+"})
+     * @Method("GET")
      *
      * @param string $slug
      * @return Response
