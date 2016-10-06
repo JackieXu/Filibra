@@ -109,6 +109,10 @@ class ChallengeController extends BaseController
             return $this->challengeNotFound();
         }
 
+        if (!$this->isGranted('ROLE_USER')) {
+            return $this->notLoggedInRedirect();
+        }
+
         if ($this->get('challenge.service')->isUserInChallenge($this->getUser(), $challenge)) {
             $this->addFlash('error', 'Already taking part in this challenge!');
 

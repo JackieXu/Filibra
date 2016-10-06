@@ -56,4 +56,16 @@ class BaseController extends Controller
         $parameters['facebook_login_url'] = $facebookLoginURL;
         $parameters['instagram_login_url'] = $instagramLoginURL;
     }
+
+    /**
+     * Redirects user to index page and adds error message.
+     *
+     * @return Response
+     */
+    protected function notLoggedInRedirect(): Response
+    {
+        $this->addFlash('error', 'You need to be logged in to view this page.');
+
+        return $this->redirectToRoute('index_page');
+    }
 }

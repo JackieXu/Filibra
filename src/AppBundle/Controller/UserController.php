@@ -23,9 +23,7 @@ class UserController extends BaseController
     public function overviewPageAction(): Response
     {
         if (!$this->isGranted('ROLE_USER')) {
-            $this->addFlash('error', 'You need to be logged in to view this page.');
-
-            return $this->redirectToRoute('index_page');
+            return $this->notLoggedInRedirect();
         }
 
         return $this->render(':user:overview.html.twig');
@@ -41,9 +39,7 @@ class UserController extends BaseController
     public function profilePageAction(): Response
     {
         if (!$this->isGranted('ROLE_USER')) {
-            $this->addFlash('error', 'You need to be logged in to view this page.');
-
-            return $this->redirectToRoute('index_page');
+            return $this->notLoggedInRedirect();
         }
 
         return $this->render(':user:profile.html.twig', []);
