@@ -424,8 +424,6 @@ class User implements UserInterface
     /**
      * Removes sensitive data from the user.
      *
-     * TODO: Implement this.
-     *
      * This is important if, at any given point, sensitive information like
      * the plain-text password is stored on this object.
      */

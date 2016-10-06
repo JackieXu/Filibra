@@ -6,7 +6,6 @@
     {% if app.user in challenge.participants %}
     <a href="{{ path('join_challenge_action', {'slug': challenge.slug}) }}">Join challenge</a>
     {% else %}
-    {# TODO: Implement ability to leave challenge.#}
     <a href="#">Leave challenge</a>
     {% endif %}
     {% endif %}

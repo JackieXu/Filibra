@@ -67,8 +67,6 @@ class InstagramService
     /**
      * Logs user in via authorization code.
      *
-     * TODO: Implement proper error/exception handling.
-     *
      * @param string $code
      * @param string $redirectURI
      * @return bool|array
@@ -149,7 +147,6 @@ class InstagramService
                 $userMedia = array_merge($userMedia, $filtered);
 
                 // null if next_url is not set, end loop here.
-                // TODO: stop looking for images posted before challenge start date.
                 $nextMaxId = $data['pagination']['next_max_id'] ?? null;
             }
         } while ($nextMaxId !== null);

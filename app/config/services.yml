@@ -1,4 +1,3 @@
-# TODO: move these things to parameters.
 parameters:
     instagram_client_id: d4d4ab1ee7944adb8bfce67b30c283fd
     instagram_client_secret: 1aec6127a97a46f6866d66dda42ded93
@@ -6,7 +5,6 @@ parameters:
     facebook_app_id: 1641474732829625
     facebook_app_secret: e082f3446f283be92f401e6c9d9877c7
 
-# TODO: Add base object service to handle entities.
 services:
     instagram.service:
         class: AppBundle\Service\InstagramService

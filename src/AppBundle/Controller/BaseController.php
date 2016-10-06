@@ -12,9 +12,6 @@ class BaseController extends Controller
     /**
      * Renders view.
      *
-     * TODO: Clean up the authentication check for adding login URLs.
-     * TODO: URLs should only be added if user isn't logged in or on the profile page to connect other media.
-     *
      * @param string $view
      * @param array $parameters
      * @param Response|null $response

@@ -38,9 +38,6 @@ class ChallengeController extends BaseController
      *
      * @Route("/challenges/new", name="new_challenge_page")
      *
-     * TODO: Different action if user isn't an admin. Need proper pages for this.
-     * TODO: Handle dates properly for new challenges.
-     *
      * @param Request $request
      * @return Response
      */
