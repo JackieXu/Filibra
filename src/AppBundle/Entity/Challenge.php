@@ -338,16 +338,6 @@ class Challenge
     }
 
     /**
-     * Get users
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getUsers()
-    {
-        return $this->users;
-    }
-
-    /**
      * Add entry
      *
      * @param Entry $entry
