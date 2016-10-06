@@ -132,6 +132,11 @@ class ChallengeController extends BaseController
         return $this->redirectToRoute('challenge', ['slug' => $challenge->getSlug()]);
     }
 
+    /**
+     * Returns challenge not found response with 404 status code.
+     *
+     * @return Response
+     */
     private function challengeNotFound()
     {
         return new Response(
