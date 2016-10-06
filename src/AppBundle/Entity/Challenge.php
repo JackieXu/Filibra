@@ -350,11 +350,11 @@ class Challenge
     /**
      * Add entry
      *
-     * @param \AppBundle\Entity\Entry $entry
+     * @param Entry $entry
      *
      * @return Challenge
      */
-    public function addEntry(\AppBundle\Entity\Entry $entry)
+    public function addEntry(Entry $entry)
     {
         $this->entries[] = $entry;
 
@@ -364,9 +364,9 @@ class Challenge
     /**
      * Remove entry
      *
-     * @param \AppBundle\Entity\Entry $entry
+     * @param Entry $entry
      */
-    public function removeEntry(\AppBundle\Entity\Entry $entry)
+    public function removeEntry(Entry $entry)
     {
         $this->entries->removeElement($entry);
     }
@@ -408,11 +408,11 @@ class Challenge
     /**
      * Add participant
      *
-     * @param \AppBundle\Entity\ChallengeUser $participant
+     * @param ChallengeUser $participant
      *
      * @return Challenge
      */
-    public function addParticipant(\AppBundle\Entity\ChallengeUser $participant)
+    public function addParticipant(ChallengeUser $participant)
     {
         $this->participants[] = $participant;
 
@@ -422,9 +422,9 @@ class Challenge
     /**
      * Remove participant
      *
-     * @param \AppBundle\Entity\ChallengeUser $participant
+     * @param ChallengeUser $participant
      */
-    public function removeParticipant(\AppBundle\Entity\ChallengeUser $participant)
+    public function removeParticipant(ChallengeUser $participant)
     {
         $this->participants->removeElement($participant);
     }

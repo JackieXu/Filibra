@@ -68,11 +68,11 @@ class ChallengeUser
     /**
      * Set challenge
      *
-     * @param \AppBundle\Entity\Challenge $challenge
+     * @param Challenge $challenge
      *
      * @return ChallengeUser
      */
-    public function setChallenge(\AppBundle\Entity\Challenge $challenge)
+    public function setChallenge(Challenge $challenge)
     {
         $this->challenge = $challenge;
 
@@ -82,7 +82,7 @@ class ChallengeUser
     /**
      * Get challenge
      *
-     * @return \AppBundle\Entity\Challenge
+     * @return Challenge
      */
     public function getChallenge()
     {
@@ -92,11 +92,11 @@ class ChallengeUser
     /**
      * Set user
      *
-     * @param \AppBundle\Entity\User $user
+     * @param User $user
      *
      * @return ChallengeUser
      */
-    public function setUser(\AppBundle\Entity\User $user)
+    public function setUser(User $user)
     {
         $this->user = $user;
 
@@ -106,7 +106,7 @@ class ChallengeUser
     /**
      * Get user
      *
-     * @return \AppBundle\Entity\User
+     * @return User
      */
     public function getUser()
     {
