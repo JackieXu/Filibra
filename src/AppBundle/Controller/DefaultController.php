@@ -17,11 +17,9 @@ class DefaultController extends BaseController
     public function homePageAction(): Response
     {
         $challengeRepository = $this->getDoctrine()->getManager()->getRepository('AppBundle:Challenge');
-        #$featuredChallenges = $challengeRepository->findFeaturedChallenges();
         $newestChallenges = $challengeRepository->findNewestChallenges();
 
         return $this->render(':default:index.html.twig', [
-            #'featured_challenges' => $featuredChallenges
             'newest_challenges' => $newestChallenges
         ]);
     }
