@@ -25,7 +25,7 @@ class AuthenticationController extends BaseController
      * @param Request $request
      * @return Response
      */
-    public function facebookLoginHandler(Request $request): Response
+    public function facebookLoginHandlerAction(Request $request): Response
     {
         $facebookService = $this->get('facebook.service');
         $accessToken = $facebookService->getAccessToken();
@@ -66,7 +66,7 @@ class AuthenticationController extends BaseController
      * @param Request $request
      * @return Response
      */
-    public function instagramLoginHandler(Request $request): Response
+    public function instagramLoginHandlerAction(Request $request): Response
     {
         if ($request->query->has('error')) {
             return $this->redirectToRoute('index_page');
@@ -112,7 +112,7 @@ class AuthenticationController extends BaseController
      * @param Request $request
      * @return Response
      */
-    public function logoutHandler(Request $request): Response
+    public function logoutHandlerAction(Request $request): Response
     {
         if ($this->getUser()) {
             $this->get('security.token_storage')->setToken(null);
