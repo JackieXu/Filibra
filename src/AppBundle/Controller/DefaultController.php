@@ -3,9 +3,7 @@
 namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class DefaultController extends BaseController
 {
@@ -50,5 +48,29 @@ class DefaultController extends BaseController
     public function contactPageAction(): Response
     {
         return $this->render(':default:index.html.twig');
+    }
+
+    /**
+     * Displays terms of service page.
+     *
+     * @Route("/terms-of-service", name="terms_of_service_page")
+     *
+     * @return Response
+     */
+    public function termsPageAction(): Response
+    {
+        return $this->render(':default:terms_of_service.html.twig');
+    }
+
+    /**
+     * Displays privacy policy page.
+     *
+     * @Route("/privacy-policy", name="privacy_policy_page")
+     *
+     * @return Response
+     */
+    public function policyPageAction(): Response
+    {
+        return $this->render(':default:privacy_policy.html.twig');
     }
 }
