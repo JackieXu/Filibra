@@ -140,7 +140,7 @@ class ChallengeController extends BaseController
      *
      * @return Response
      */
-    private function challengeNotFound()
+    private function challengeNotFound(): Response
     {
         return new Response(
             $this->renderView(':challenge:not_found.html.twig'),
