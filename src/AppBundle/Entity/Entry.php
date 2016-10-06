@@ -3,7 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\UniqueConstraint as UniqueConstraint;
+use Doctrine\ORM\Mapping\UniqueConstraint;
 
 /**
  * Class Entry
