@@ -33,6 +33,14 @@ class AuthenticationController extends BaseController
         $graphUser = $facebookService->getUserByAccessToken($accessToken);
 
         if ($graphUser) {
+            if ($this->isGranted('ROLE_USER')) {
+                $this->get('user.service')->linkToFacebook($this->getUser(), $accessToken, $graphUser);
+
+                $this->addFlash('info', 'Succesfully connected Facebook account!');
+
+                return $this->redirectToRoute('profile');
+            }
+
             $user = $this->get('user.service')->loginWithFacebook($accessToken, $graphUser);
 
             $token = new UsernamePasswordToken($user, $user->getFacebookAccessToken(), 'main', $user->getRoles());

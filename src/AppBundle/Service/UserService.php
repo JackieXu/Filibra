@@ -67,6 +67,24 @@ class UserService
         return $user;
     }
 
+    /**
+     * Links user account to Facebook.
+     *
+     * @param User $user
+     * @param AccessToken $accessToken
+     * @param GraphUser $graphUser
+     * @return User
+     */
+    public function linkToFacebook(User $user, AccessToken $accessToken, GraphUser $graphUser): User
+    {
+        $user->setFacebookId($graphUser->getId());
+        $user->setFacebookAccessToken($accessToken->getValue());
+
+        $this->entityManager->flush();
+
+        return $user;
+    }
+
 
     /**
      * Log in with Instagram.
@@ -99,6 +117,13 @@ class UserService
         return $user;
     }
 
+    /**
+     * Links user account to Instagram.
+     *
+     * @param User $user
+     * @param array $instagramData
+     * @return User
+     */
     public function linkToInstagram(User $user, array $instagramData): User
     {
         $user->setInstagramId($instagramData['user']['id']);
