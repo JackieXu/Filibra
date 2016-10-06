@@ -47,5 +47,4 @@ class EntryFilter
     {
         return true;
     }
-
 }
