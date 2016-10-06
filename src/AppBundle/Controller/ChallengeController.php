@@ -84,9 +84,10 @@ class ChallengeController extends BaseController
         $challengeRepository = $this->getDoctrine()->getManager()->getRepository('AppBundle:Challenge');
         $challenge = $challengeRepository->findOneBySlug($slug);
 
-        if (!$challenge){
-            return $this->render(':challenge:not_found.html.twig');
+        if (!$challenge) {
+            return $this->challengeNotFound();
         }
+
         return $this->render(':challenge:challenge.html.twig', [
             'challenge' => $challenge,
         ]);
@@ -105,8 +106,8 @@ class ChallengeController extends BaseController
         $challengeRepository = $this->getDoctrine()->getManager()->getRepository('AppBundle:Challenge');
         $challenge = $challengeRepository->findOneBySlug($slug);
 
-        if (!$challenge){
-            return $this->render(':challenge:not_found.html.twig');
+        if (!$challenge) {
+            return $this->challengeNotFound();
         }
 
         if ($this->get('challenge.service')->isUserInChallenge($this->getUser(), $challenge)) {
@@ -129,5 +130,13 @@ class ChallengeController extends BaseController
         $this->addFlash('info', $this->get('translator')->trans('challenge.flashes.joined'));
 
         return $this->redirectToRoute('challenge', ['slug' => $challenge->getSlug()]);
+    }
+
+    private function challengeNotFound()
+    {
+        return new Response(
+            $this->renderView(':challenge:not_found.html.twig'),
+            404
+        );
     }
 }
