@@ -27,7 +27,6 @@ Session.vim
 .netrwhist
 *~
 # auto-generated tag files
-tags
 ### Windows template
 # Windows image file caches
 Thumbs.db
