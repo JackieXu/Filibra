@@ -39,7 +39,7 @@ class ChallengeController extends BaseController
      * Displays challenge creation page.
      *
      * @Route("/challenges/new", name="new_challenge_page")
-     * @Method({"GET", "POST"})
+     * @Method("GET")
      *
      * @param Request $request
      * @return Response
@@ -48,6 +48,26 @@ class ChallengeController extends BaseController
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to view this page.');
 
+        $challengeForm = $this->createForm(ChallengeType::class, new Challenge());
+
+        $challengeForm->handleRequest($request);
+
+        return $this->render('challenge/form.html.twig', [
+            'form' => $challengeForm->createView()
+        ]);
+    }
+
+    /**
+     * Creates new challenge.
+     *
+     * @Route("/challenges/new", name="new_challenge_action")
+     * @Method("POST")
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function createAction(Request $request): Response
+    {
         $challenge = new Challenge();
         $challengeForm = $this->createForm(ChallengeType::class, $challenge);
 
@@ -65,9 +85,7 @@ class ChallengeController extends BaseController
             ]);
         }
 
-        return $this->render('challenge/form.html.twig', [
-            'form' => $challengeForm->createView()
-        ]);
+        return $this->redirectToRoute('new_challenge_page');
     }
 
     /**
