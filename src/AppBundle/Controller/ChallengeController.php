@@ -109,7 +109,14 @@ class ChallengeController extends BaseController
             return $this->render(':challenge:not_found.html.twig');
         }
 
-        #TODO: Check whether user is already participating in challenge
+        if ($this->get('challenge.service')->isUserInChallenge($this->getUser(), $challenge)) {
+            $this->addFlash('error', 'Already taking part in this challenge!');
+
+            return $this->redirectToRoute('challenge', [
+                'slug' => $challenge->getSlug()
+            ]);
+        }
+
         $entityManager = $this->getDoctrine()->getManager();
 
         $challengeUser = new ChallengeUser();
