@@ -6,6 +6,7 @@ parameters:
     facebook_app_id: 1641474732829625
     facebook_app_secret: e082f3446f283be92f401e6c9d9877c7
 
+# TODO: Add base object service to handle entities.
 services:
     instagram.service:
         class: AppBundle\Service\InstagramService
