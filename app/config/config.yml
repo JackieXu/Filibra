@@ -37,6 +37,11 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+      platform:
+        name: "%platform_name%"
+      company:
+        name: "%company_name%"
     #cache:            false
 
 # Doctrine Configuration
