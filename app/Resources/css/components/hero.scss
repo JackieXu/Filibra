@@ -1,9 +1,14 @@
 .hero {
-  height: calc(100vh - 80px);
+  padding-top: 194px;
+  padding-bottom: 194px;
 
   display: flex;
   justify-content: center;
   flex-direction: column;
 
   background: #F4F4F4;
+
+  .hero-actions {
+    margin-top: 108px;
+  }
 }
