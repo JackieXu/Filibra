@@ -1,0 +1,52 @@
+/**
+ * Slanted edges for sections.
+ * Explanation at https://www.viget.com/articles/angled-edges-with-css-masks-and-transforms
+ */
+.slanted-top,
+.slanted-bottom {
+  position: relative;
+}
+
+.slanted-top:before,
+.slanted-bottom:after {
+  content: '';
+
+  height: 50%;
+
+  position: absolute;
+  display: block;
+  left: 0;
+  right: 0;
+
+  background: inherit;
+
+  z-index: -1;
+}
+
+.slanted-top:before {
+  top: 0;
+}
+
+.slanted-bottom:after {
+  bottom: 0;
+}
+
+.slanted-top.left:before {
+  transform: skewY(0.5deg);
+  transform-origin: 100%;
+}
+
+.slanted-bottom.right:after {
+  transform: skewY(0.5deg);
+  transform-origin: -100%;
+}
+
+.slanted-top.right:before {
+  transform: skewY(-0.5deg);
+  transform-origin: -100%;
+}
+
+.slanted-bottom.left:after {
+  transform: skewY(-0.5deg);
+  transform-origin: 100%;
+}
