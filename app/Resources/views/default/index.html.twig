@@ -17,25 +17,10 @@
             </div>
         </div>
     </section>
-    <section class="stats">
-        <div class="row">
-            <div class="stat large-4 columns">
-                <div class="stat-name">Paid out</div>
-                <div class="stat-value">{{ 125000|currency }}</div>
-            </div>
-            <div class="stat large-4 columns">
-                <div class="stat-name">Earnings pool</div>
-                <div class="stat-value">{{ 30000|currency }}</div>
-            </div>
-            <div class="stat large-4 columns">
-                <div class="stat-name">Next challenge</div>
-                <div class="stat-value">4 days</div>
-            </div>
-        </div>
-    </section>
+    {% include "default/blocks/stats.html.twig" %}
     <section class="section featured-challenges">
-        <header class="row section-heading">
-            <h2 class="section-header">{% trans %}challenge.new{% endtrans %}</h2>
+        <header class="row section-header text-center">
+            <h2 class="section-heading">{% trans %}challenge.new{% endtrans %}</h2>
         </header>
         <div class="row">
 
@@ -48,15 +33,5 @@
             <a class="button large" href="{{ path('challenge_list_page') }}">View all challenges</a>
         </div>
     </section>
-    <section class="section how-it-works">
-        <header class="row section-heading">
-            <h2 class="section-header">How it works</h2>
-        </header>
-        <div class="row">
-            <p class="center text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed nibh nulla. Duis elementum faucibus facilisis. Integer aliquet sodales ultricies. Maecenas laoreet mauris nisi, quis scelerisque tortor molestie id. Curabitur vel velit quis enim elementum vulputate. Vestibulum sed cursus nulla. Morbi vulputate nisl sit amet augue ultricies porttitor. Proin eu vestibulum justo. Nunc tempus purus nec nisl eleifend eleifend.</p>
-        </div>
-        <div class="row">
-            <p class="center text">Phasellus ut arcu urna. Donec sit amet quam id tortor tempus faucibus eget et eros. Ut sollicitudin rutrum nisl, consectetur rutrum mi porta a. Curabitur pharetra nisl purus, at ornare diam viverra ut. Morbi vitae iaculis odio, non egestas ante. Donec vel dignissim risus, ac rutrum quam. Sed id lacus sed diam dictum ullamcorper. Phasellus vel nulla malesuada elit venenatis malesuada quis quis arcu.</p>
-        </div>
-    </section>
+    {% include "default/blocks/how_it_works.html.twig" %}
 {% endblock body %}

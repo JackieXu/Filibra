@@ -3,15 +3,25 @@
         <img class="challenge-thumbnail">
         <div class="challenge-details">
             <a href="{{ path('challenge_page', {'slug': challenge.slug}) }}">
-                <h3 class="challenge-name">{{ challenge.name }}</h3>
+                <h3 class="challenge-name">{{ challenge.hashTag }}</h3>
             </a>
             <div class="challenge-detail detail row">
-                <div class="detail-name medium-6 columns">Earnings pool</div>
-                <div class="detail-name medium-6 columns text-right">{{ challenge.prize|currency }}</div>
+                <div class="detail-name medium-6 columns">
+                    <span class="detail-icon">
+                        <i class="fa fa-clock"></i>
+                    </span>
+                    <span class="detail-value">{{ challenge_datediff(challenge) }}</span>
+                </div>
+                <div class="detail-name medium-6 columns text-right">
+                    <span class="detail-icon">
+                        <i class="fa fa-euro"></i>
+                    </span>
+                    <span class="detail-value">{{ challenge.prize|currency }}</span>
+                </div>
             </div>
             <div class="challenge-detail detail row">
                 <div class="detail-name medium-6 columns">Time left</div>
-                <div class="detail-name medium-6 columns text-right">{{ challenge_datediff(challenge) }}</div>
+                <div class="detail-name medium-6 columns text-right"></div>
             </div>
         </div>
     </div>

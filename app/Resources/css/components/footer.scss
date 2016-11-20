@@ -1,3 +1,8 @@
+@import "../variables/colors.scss";
+@import "../variables/grid.scss";
+
+$footer-link-color: #6c6c6c;
+
 .page-footer {
   padding-top: 5.0rem;
   padding-bottom: 5.0rem;
@@ -5,14 +10,16 @@
   line-height: calc($baseline * 6);
 
   .copy {
-
     font-size: 1.4rem;
     text-align: right;
   }
 
   .footer-heading {
-    color: #000;
+    margin-bottom: 0;
+
+    color: $pink;
     font-size: calc($baseline * 4);
+    font-weight: 400;
   }
 
   .footer-link {
@@ -20,6 +27,6 @@
 
     padding-top: calc($baseline * 2);
 
-    color: #6C6C6C;
+    color: $footer-link-color;
   }
 }

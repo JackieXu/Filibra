@@ -1,8 +1,11 @@
+@import "../variables/colors.scss";
+@import "../variables/grid.scss";
+
 .stats {
   padding-top: 5.0rem;
   padding-bottom: 5.0rem;
 
-  background: #FAFAFA;
+  background: $blue;
 
   .stat {
     text-align: center;
@@ -11,7 +14,6 @@
   .stat-name {
     margin-bottom: calc($baseline * 6);
 
-    color: #4F4F4F;
     font-size: calc($baseline * 5);
     line-height: calc($baseline * 6);
   }
