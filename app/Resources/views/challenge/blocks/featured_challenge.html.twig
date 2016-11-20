@@ -2,8 +2,10 @@
     <div class="challenge">
         <img class="challenge-thumbnail">
         <div class="challenge-details">
-            <a href="{{ path('challenge_page', {'slug': challenge.slug}) }}">
-                <h3 class="challenge-name">{{ challenge.hashTag }}</h3>
+            <a class="challenge-link" href="{{ path('challenge_page', {'slug': challenge.slug}) }}">
+                <h3 class="challenge-hashTag">
+                    <span class="challenge-hash">#</span><span class="challenge-tag">{{ challenge.hashTag|slice(1) }}</span>
+                </h3>
             </a>
             <div class="challenge-detail detail row">
                 <div class="detail-name medium-6 columns">
@@ -19,10 +21,6 @@
                     </span>
                     <span class="detail-value">{{ challenge.prize|currency }}</span>
                 </div>
-            </div>
-            <div class="challenge-detail detail row">
-                <div class="detail-name medium-6 columns">Time left</div>
-                <div class="detail-name medium-6 columns text-right"></div>
             </div>
         </div>
     </div>
