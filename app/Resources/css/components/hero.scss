@@ -1,14 +1,15 @@
-.hero {
-  padding-top: 194px;
-  padding-bottom: 194px;
+@import "../variables/colors.scss";
 
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+.hero {
+  min-height: 420px;
 
   background: #F4F4F4;
 
   .hero-actions {
-    margin-top: 108px;
+    margin-top: 56px;
+  }
+
+  .button {
+    background: $blue;
   }
 }

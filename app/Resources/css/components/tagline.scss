@@ -3,8 +3,8 @@
 .tagline {
 
   .tagline-heading {
-    width: 233px;
-    height: 233px;
+    width: 200px;
+    height: 200px;
 
     position: relative;
 
@@ -34,7 +34,7 @@
   }
 
   .tagline-tag {
-    top: 100px;
+    top: 84px;
     right: -5px;
 
     transform: rotate(2deg);
@@ -47,13 +47,11 @@
   }
 
   .tagline-keyword {
-    font-size: 4.0rem;
+    font-size: 3.2rem;
     font-weight: bold;
   }
   .tagline-text {
-    margin-left: 2px;
-
-    font-size: 2.4rem;
+    font-size: 2.1rem;
     font-weight: normal;
   }
 }
