@@ -10,8 +10,23 @@ $footer-link-color: #6c6c6c;
   line-height: calc($baseline * 6);
 
   .copy {
+    color: #7B7B7B;
     font-size: 1.4rem;
-    text-align: right;
+
+    @media screen and (max-width: 640px) {
+      margin-top: 2.1rem;
+    }
+  }
+
+  .copy-text {
+    @media screen and (min-width: 640px) {
+      margin-top: -21px;
+      text-align: right;
+    }
+  }
+
+  .copy-link {
+    color: $black;
   }
 
   .footer-heading {

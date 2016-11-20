@@ -8,19 +8,21 @@
   background: $blue;
 
   .stat {
+    margin-top: calc($baseline * 4);
+    margin-bottom: calc($baseline * 4);
     text-align: center;
   }
 
   .stat-name {
-    margin-bottom: calc($baseline * 6);
+    margin-bottom: calc($baseline * 3);
 
-    font-size: calc($baseline * 5);
-    line-height: calc($baseline * 6);
+    font-size: calc($baseline * 4);
+    line-height: calc($baseline * 4);
   }
 
   .stat-value {
-    font-size: calc($baseline * 10);
-    line-height: calc($baseline * 10);
+    font-size: calc($baseline * 8);
+    line-height: calc($baseline * 8);
 
     font-weight: bold;
   }
