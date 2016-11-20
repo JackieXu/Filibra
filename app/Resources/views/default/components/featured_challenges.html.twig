@@ -5,7 +5,7 @@
     <div class="row">
 
         {% for challenge in newest_challenges %}
-            {% include 'challenge/blocks/featured_challenge.html.twig' with {'challenge': challenge} %}
+            {% include 'challenge/components/featured_challenge.html.twig' with {'challenge': challenge} %}
         {% endfor %}
 
     </div>

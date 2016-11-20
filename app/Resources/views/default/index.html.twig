@@ -5,17 +5,7 @@
         <div class="ratio-content vertical-center">
             <div class="row">
                 <div class="tagline center">
-                    <h1 class="tagline-heading center">
-                        <span class="tagline-join">
-                            <span class="tagline-keyword">Join</span> <span class="tagline-text">the Challenge</span>
-                        </span>
-                        <span class="tagline-tag">
-                            <span class="tagline-keyword">Tag</span> <span class="tagline-text">your posts</span>
-                        </span>
-                        <span class="tagline-earn">
-                            <span class="tagline-keyword">Earn</span> <span class="tagline-text">money</span>
-                        </span>
-                    </h1>
+                    {% include "components/tagline.html.twig" %}
                 </div>
             </div>
             <div class="row hero-actions">
@@ -23,7 +13,11 @@
             </div>
         </div>
     </section>
-    {% include "default/blocks/stats.html.twig" %}
-    {% include "default/blocks/featured_challenges.html.twig" %}
-    {% include "default/blocks/how_it_works.html.twig" %}
+    {% include "components/stats.html.twig" with { 'stats': [
+        { 'name': 'Paid out', 'value': '&euro;' ~ 12345|currency },
+        { 'name': 'Earnings pool', 'value': '&euro;' ~ 30000|currency },
+        { 'name': 'Next challenge', 'value': '4 days' }
+    ] } %}
+    {% include "default/components/featured_challenges.html.twig" %}
+    {% include "default/components/how_it_works.html.twig" %}
 {% endblock body %}

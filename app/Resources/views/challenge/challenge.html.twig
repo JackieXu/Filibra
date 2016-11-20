@@ -1,12 +1,27 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
-    <h1>{{ challenge.name }}</h1>
-    {% if app.user %}
-    <form method="POST" action="{{ path('join_challenge_action', {'slug': challenge.slug}) }}">
-        <input class="button" type="submit" value="Join challenge" />
-    </form>
-    {% endif %}
+    <section class="hero text-center ratio ratio--16-7">
+        <div class="ratio-content vertical-center">
+            <div class="row">
+                {% include "components/tagline.html.twig" %}
+            </div>
+            <div class="row hero-actions">
+                {% if app.user %}
+                    <form method="POST" action="{{ path('join_challenge_action', {'slug': challenge.slug}) }}">
+                        <input class="button" type="submit" value="Join challenge" />
+                    </form>
+                {% else %}
+                    <a class="button large" href="">Sign up now</a>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    {% include "components/stats.html.twig" with { 'stats': [
+        { 'name': 'Tagged posts', 'value': 1234|number_format(2, '.', ',') },
+        { 'name': 'Earnings pool', 'value': '&euro; ' ~ challenge.prize|currency },
+        { 'name': 'Time left', 'value': challenge_datediff(challenge) }
+    ] } %}
 
     {% for participant in challenge.participants %}
         <div>{{ loop.index }} - {{ participant.user.name }} : {{ participant.score }}</div>
