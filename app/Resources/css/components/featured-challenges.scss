@@ -61,4 +61,13 @@
   .detail-icon {
     color: $pink;
   }
+
+  .featured-challenges-actions {
+    margin-top: 60px;
+    margin-bottom: 40px;
+
+    .button {
+      background: $blue;
+    }
+  }
 }

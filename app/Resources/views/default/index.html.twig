@@ -18,20 +18,6 @@
         </div>
     </section>
     {% include "default/blocks/stats.html.twig" %}
-    <section class="section featured-challenges">
-        <header class="row section-header text-center">
-            <h2 class="section-heading">{% trans %}challenge.new{% endtrans %}</h2>
-        </header>
-        <div class="row">
-
-            {% for challenge in newest_challenges %}
-                {% include 'challenge/blocks/featured_challenge.html.twig' with {'challenge': challenge} %}
-            {% endfor %}
-
-        </div>
-        <div class="row text-center">
-            <a class="button large" href="{{ path('challenge_list_page') }}">View all challenges</a>
-        </div>
-    </section>
+    {% include "default/blocks/featured_challenges.html.twig" %}
     {% include "default/blocks/how_it_works.html.twig" %}
 {% endblock body %}

@@ -1,0 +1,15 @@
+<section class="section featured-challenges">
+    <header class="row section-header text-center">
+        <h2 class="section-heading">{% trans %}challenge.new{% endtrans %}</h2>
+    </header>
+    <div class="row">
+
+        {% for challenge in newest_challenges %}
+            {% include 'challenge/blocks/featured_challenge.html.twig' with {'challenge': challenge} %}
+        {% endfor %}
+
+    </div>
+    <div class="row text-center featured-challenges-actions">
+        <a class="button large" href="{{ path('challenge_list_page') }}">View all challenges</a>
+    </div>
+</section>
