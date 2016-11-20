@@ -8,9 +8,10 @@
             <div class="challenge-detail detail row">
                 <div class="detail-name medium-6 columns">
                     <span class="detail-icon">
-                        <i class="fa fa-clock"></i>
+                        <i class="fa fa-clock-o"></i>
                     </span>
-                    <span class="detail-value">{{ challenge_datediff(challenge) }}</span>
+                    <time datetime="{{ challenge.finishDate|date("c") }}" class="detail-value">{{ challenge_datediff
+                        (challenge) }}</time>
                 </div>
                 <div class="detail-name medium-6 columns text-right">
                     <span class="detail-icon">

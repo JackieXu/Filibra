@@ -1,3 +1,5 @@
+@import "../variables/colors.scss";
+
 .featured-challenges {
 
   .challenge {
@@ -13,5 +15,9 @@
 
   .challenge-details {
     padding: 2rem;
+  }
+
+  .detail-icon {
+    color: $pink;
   }
 }
