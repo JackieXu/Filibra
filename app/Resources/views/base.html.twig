@@ -33,8 +33,76 @@
         <!-- This is where the magic happens -->
         <script src="{{ asset('js/jquery.js') }}"></script>
         <script src="{{ asset('js/foundation.min.js') }}"></script>
+        <script src="{{ asset('js/moment.min.js') }}"></script>
         <script>
-            $(document).foundation();
+            $(function () {
+
+                // TODO: move code to a separate file
+                var state;
+
+                $(document).foundation();
+
+                state = getInitialState();
+                window.setInterval(updateCounters, 1000);
+
+                function tomorrow() {
+                    return moment().add(1, 'days');
+                }
+
+                function week() {
+                    return moment().add(7, 'days');
+                }
+
+                function getInitialState() {
+
+                    var timeFields = $('time').map(function (domElement) {
+                        var $element = $(domElement);
+
+                        return {
+                            $element: $element,
+                            moment: moment($element).attr('datetime')
+                        };
+                    });
+
+                    return {
+                        count: 0,
+                        fastTimerData: $(timeFields).filter(function (datum) {
+                            return datum.moment.isBefore(tomorrow());
+                        }),
+                        slowTimerData: $(timeFields).filter(function (datum) {
+                            return datum.moment.isAfter(tomorrow()) && datum.moment.isBefore(week())
+                        })
+                    };
+                }
+
+                function updateFastCounter(datum) {
+                    var duration = moment.duration(moment().diff(datum.moment));
+                    var hours = duration.hours();
+                    var minutes = duration.minutes();
+                    var seconds = duration.seconds();
+
+                    datum.$element.html(hours + 'h : ' + minutes + 'm : ' + seconds + 's');
+                }
+
+                function updateSlowCounter(datum) {
+                    var duration = moment.duration(moment().diff(datum.moment));
+                    var days = duration.days();
+                    var hours = duration.hours();
+                    var minutes = duration.minutes();
+
+                    datum.$element.html(days + 'd : ' + hours + 'h : ' + minutes + 'm');
+                }
+
+                function updateCounters() {
+                    state.count += 1;
+
+                    $(state.fastTimerData).forEach(updateFastCounter);
+
+                    if (state.count % 60 === 0) {
+                        $(state.slowTimerData).forEach(updateSlowCounter);
+                    }
+                }
+            });
         </script>
         {% block javascripts %}{% endblock %}
     </body>
